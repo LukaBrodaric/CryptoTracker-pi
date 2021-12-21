@@ -2,13 +2,12 @@
   <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
       <img
-        src="@/assets/CT_logo_1.png"
+        src="@/assets/logoproba2.png"
         height="35"
         class="d-inline-block align-center"
         alt=""
         loading="lazy"
       />
-      &nbsp; CryptoTracker
     </a>
     <button
       class="navbar-toggler"
@@ -25,7 +24,6 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <router-link to="/">Home</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,7 +39,7 @@
           <router-link to="/settings">Settings</router-link>
         </li>
       </ul>
-
+      <br />
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
         Login
       </button>
@@ -61,13 +59,13 @@
 
 #nav {
   padding: 30px;
-  background-color: rgba(206, 194, 194, 0.144) !important;
+  background-color: rgba(0, 0, 0, 0.144) !important;
   a {
     font-weight: bold;
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #007bff;
+      color: #0099fe;
     }
   }
 }
