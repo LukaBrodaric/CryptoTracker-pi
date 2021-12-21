@@ -1,10 +1,52 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/portfolio">Portfolio</router-link> |
-    <router-link to="/news">News</router-link> |
-    <router-link to="/settings">Settings</router-link>
-  </div>
+  <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img
+        src="@/assets/CT_logo_1.png"
+        height="35"
+        class="d-inline-block align-center"
+        alt=""
+        loading="lazy"
+      />
+      &nbsp; CryptoTracker
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <router-link to="/">Home</router-link>
+        </li>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+          <router-link to="/portfolio">Portfolio</router-link>
+        </li>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+          <router-link to="/news">News</router-link>
+        </li>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+          <router-link to="/settings">Settings</router-link>
+        </li>
+      </ul>
+
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+        Login
+      </button>
+    </div>
+  </nav>
   <router-view />
 </template>
 
@@ -19,13 +61,13 @@
 
 #nav {
   padding: 30px;
-  background-color: rgba(47, 137, 189, 0.144) !important;
+  background-color: rgba(206, 194, 194, 0.144) !important;
   a {
     font-weight: bold;
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #10dd32;
+      color: #007bff;
     }
   }
 }
