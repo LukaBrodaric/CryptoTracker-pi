@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1>Welcome to the homepage</h1>
+    <h1>Cryptotracker</h1>
   </div>
 </template>
-
