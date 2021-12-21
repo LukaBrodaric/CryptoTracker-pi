@@ -13,6 +13,7 @@ CryptoTracker je aplikacija zamišljena da se unutar nje vrlo jednostavno mogu p
 ### Autori i zadužemka
 
 - **Luka Brodarič** (lbrodaric@unipu.hr) - implementacija live grafikona, aktualnih vijesti i UI komponenti
+- **Alen Orbanić** (aorbanic@unipu.hr) - implementacija firebasea (za registraciju korisnika), implementacija remindera za kretanje cijene i dodavanje portfolia
 
 ### Prototip aplikacije
 
