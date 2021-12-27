@@ -1,13 +1,15 @@
 <template>
   <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
-      <img
-        src="@/assets/logoproba2.png"
-        height="35"
-        class="d-inline-block align-center"
-        alt=""
-        loading="lazy"
-      />
+      <router-link to="/">
+        <img
+          src="@/assets/logoproba2.png"
+          height="35"
+          class="d-inline-block align-center"
+          alt=""
+          loading="lazy"
+        />
+      </router-link>
     </a>
     <button
       class="navbar-toggler"
@@ -24,7 +26,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          <router-link to="/">Home</router-link>
+          <router-link to="/Home">Home</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <li class="nav-item">
@@ -59,13 +61,13 @@
 
 #nav {
   padding: 30px;
-  background-color: rgba(0, 0, 0, 0.144) !important;
+  background-color: rgba(24, 26, 29, 0.815) !important;
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #ffffff;
 
     &.router-link-exact-active {
-      color: #0099fe;
+      color: #0099ff;
     }
   }
 }
