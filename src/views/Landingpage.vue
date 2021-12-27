@@ -1,9 +1,9 @@
 <template>
   <div class="full-screen">
     <div>
-      <h1>Landing Page</h1>
+      <h1>CryptoTracker</h1>
       <br />
-      <a class="button-line" href="#!">More</a>
+      <a class="button-line" href="#!">Get Started</a>
     </div>
   </div>
 </template>
@@ -90,7 +90,7 @@ h1:after {
   color: #fff;
   letter-spacing: 1px;
   font-family: "Poiret One", sans-serif;
-  content: "Subtitle goes here";
+  content: "Get alerted anywhere at anytime.";
   font-size: 0.4em;
   text-align: center;
 }
