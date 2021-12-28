@@ -1,119 +1,165 @@
 <template>
-  <div class="full-screen">
-    <div>
-      <h1>CryptoTracker</h1>
-      <br />
-      <a class="button-line" href="#!">Get Started</a>
+  <div id="container">
+    Make
+    <div id="flip">
+      <div><div>wOrK</div></div>
+      <div><div>lifeStyle</div></div>
+      <div><div>Everything</div></div>
+    </div>
+    AweSoMe!
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-6">
+        <div id="naslov">Welcome to CryptoTracker</div>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <button>
+          <span> GET STARTED </span>
+        </button>
+      </div>
+      <div class="col"></div>
     </div>
   </div>
+
+  <p>Fakultet Informatike u Puli</p>
 </template>
 
-<style>
+<style scoped>
+@import url("https://fonts.googleapis.com/css?family=Roboto:700");
+
 body {
-  background: linear-gradient(253deg, #0cc898, #1797d2, #864fe1);
-  background-size: 300% 300%;
-  -webkit-animation: Background 25s ease infinite;
-  -moz-animation: Background 25s ease infinite;
-  animation: Background 25s ease infinite;
-}
-
-@-webkit-keyframes Background {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@-moz-keyframes Background {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes Background {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.full-screen {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: url(https://i.imgur.com/wCG2csZ.png);
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 100%;
-  display: -webkit-flex;
-  display: flex;
-
-  flex-direction: column;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center;
+  margin: 0px;
+  font-family: "Roboto";
   text-align: center;
 }
 
-h1 {
-  color: #fff;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 800;
-  font-size: 4em;
-  letter-spacing: -2px;
-  text-align: center;
-  text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.6);
-}
-
-h1:after {
-  display: block;
-  color: #fff;
-  letter-spacing: 1px;
-  font-family: "Poiret One", sans-serif;
-  content: "Get alerted anywhere at anytime.";
-  font-size: 0.4em;
-  text-align: center;
-}
-
-.button-line {
-  font-family: "Open Sans", sans-serif;
+#naslov {
+  color: #0099ff;
+  text-align-last: center;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  background: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-  text-align: center;
-  font-size: 1.4em;
-  opacity: 0.8;
-  padding: 20px 80px;
-  text-decoration: none;
-  transition: all 1s ease;
-  margin: 0 auto;
+  font-size: 45px;
+  font-weight: bold;
+  padding-top: 200px;
+  width: 100%;
+  bottom: 75%;
   display: block;
-  width: 100px;
 }
 
-.button-line:hover {
+#container {
+  color: #999;
+  text-transform: uppercase;
+  font-size: 36px;
+  font-weight: bold;
+  padding-top: 200px;
+  position: fixed;
+  width: 100%;
+  bottom: 50%;
+  display: block;
+}
+
+#flip {
+  height: 50px;
+  overflow: hidden;
+}
+
+#flip > div > div {
+  color: #fff;
+  padding: 4px 12px;
+  height: 45px;
+  margin-bottom: 45px;
+  display: inline-block;
+}
+
+#flip div:first-child {
+  animation: show 5s linear infinite;
+}
+
+#flip div div {
+  background: #42c58a;
+}
+#flip div:first-child div {
+  background: #0099ff;
+}
+#flip div:last-child div {
+  background: #dc143c;
+}
+
+@keyframes show {
+  0% {
+    margin-top: -270px;
+  }
+  5% {
+    margin-top: -180px;
+  }
+  33% {
+    margin-top: -180px;
+  }
+  38% {
+    margin-top: -90px;
+  }
+  66% {
+    margin-top: -90px;
+  }
+  71% {
+    margin-top: 0px;
+  }
+  99.99% {
+    margin-top: 0px;
+  }
+  100% {
+    margin-top: -270px;
+  }
+}
+
+p {
+  position: fixed;
+  width: 100%;
+  bottom: 30px;
+  font-size: 12px;
+  color: #999;
+  margin-top: 200px;
+}
+
+button {
+  border-radius: 4px;
+  background-color: #0099ff;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 28px;
+  padding: 16px;
+  width: 270px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 30px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+}
+
+button {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+button:after {
+  content: "»";
+  position: absolute;
+  opacity: 0;
+  top: 14px;
+  right: -20px;
+  transition: 0.5s;
+}
+
+button:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+}
+
+button:hover:after {
   opacity: 1;
+  right: 10px;
 }
 </style>
