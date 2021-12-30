@@ -43,7 +43,7 @@
       </ul>
       <br />
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-        <router-link to="/login">Login</router-link>
+        <router-link to="/signup">Sign In</router-link>
       </button>
     </div>
   </nav>
@@ -61,7 +61,7 @@
 
 #nav {
   padding: 30px;
-  background-color: rgba(24, 26, 29, 0.815) !important;
+  background-color: rgba(0, 0, 0, 0.815) !important;
   a {
     font-weight: bold;
     color: #ffffff;

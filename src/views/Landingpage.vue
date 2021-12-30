@@ -16,7 +16,7 @@
         <div id="naslov">Welcome to CryptoTracker</div>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <button>
-          <span> GET STARTED </span>
+          <span> <a href="/signup"> GET STARTED </a></span>
         </button>
       </div>
       <div class="col"></div>
@@ -126,7 +126,7 @@ button {
   border-radius: 4px;
   background-color: #0099ff;
   border: none;
-  color: #fff;
+  color: #fff !important;
   text-align: center;
   font-size: 28px;
   padding: 16px;
@@ -136,7 +136,9 @@ button {
   margin: 30px;
   box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
 }
-
+a {
+  color: #fff;
+}
 button {
   cursor: pointer;
   display: inline-block;
