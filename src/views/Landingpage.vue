@@ -1,4 +1,5 @@
 <template>
+  <div id="particles-js"></div>
   <div id="container">
     Make
     <div id="flip">
@@ -12,10 +13,9 @@
   <div class="container">
     <div class="row">
       <div class="col"></div>
-      <div class="col-6">
+      <div>
         <div id="naslov">Welcome to CryptoTracker</div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <button>
+        <button id="botunic">
           <span> <a href="/signup"> GET STARTED </a></span>
         </button>
       </div>
@@ -33,6 +33,11 @@ body {
   margin: 0px;
   font-family: "Roboto";
   text-align: center;
+  background-color: #17182f !important;
+}
+
+#botunic {
+  margin-top: 400px;
 }
 
 #naslov {
@@ -77,7 +82,7 @@ body {
 }
 
 #flip div div {
-  background: #42c58a;
+  background: #710ca0;
 }
 #flip div:first-child div {
   background: #0099ff;
