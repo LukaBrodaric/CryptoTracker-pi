@@ -1,7 +1,13 @@
 <template>
   <div class="container" :class="rightpanel" id="container">
     <div class="form-container sign-up-container">
-      <form action="#">
+            <div v-if="errorMessage !== ''" class="alert alert-danger position-absolute" role="alert">
+                {{ errorMessage }}
+            </div>
+            <div v-if="successMessage !== ''" class="alert alert-success" role="alert">
+                {{ successMessage }}
+            </div>
+      <form action="#" @submit.prevent="signupRequest" id="signup-form">
         <h1>Create Account</h1>
         <div class="social-container">
           <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -9,14 +15,24 @@
           <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <span>or use your email for registration</span>
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <button>Sign Up</button>
+        <input type="text" v-model="username" placeholder="Username" />
+        <input type="email" id="email" v-model="email" placeholder="Email" />
+        <input type="password" id="password" v-model="password" placeholder="Password" />
+        <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}">
+          <span v-if="! xhrRequest">Sign Up</span>
+          <span v-if="xhrRequest">Please Wait...</span>
+        </button>
+
       </form>
     </div>
     <div class="form-container sign-in-container">
-      <form action="#">
+      <div v-if="errorMessage !== ''" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
+      <div v-if="successMessage !== ''" class="alert alert-success" role="alert">
+        {{ successMessage }}
+      </div>
+      <form action="#" @submit.prevent="loginRequest" id="login-form">
         <h1>Sign in</h1>
         <div class="social-container">
           <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -24,10 +40,13 @@
           <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <span>or use your account</span>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input type="email" placeholder="Email" v-model="email" id="email" />
+        <input type="password" placeholder="Password" v-model="password" id="password" />
         <a href="#">Forgot your password?</a>
-        <button>Sign In</button>
+        <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}" class="btn btn-lg btn-primary px-4">
+          <span v-if="! xhrRequest">Login</span>
+          <span v-if="xhrRequest">Please Wait...</span>
+        </button>
       </form>
     </div>
     <div class="overlay-container">
@@ -106,7 +125,7 @@ a {
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  min-height: 480px;
+  min-height: 600px;
   margin-top: 150px;
 }
 
@@ -292,6 +311,7 @@ export default {
   data() {
     return {
       rightpanel: "",
+      username:"",
       email: "",
       password: "",
       xhrRequest: false,
@@ -317,16 +337,34 @@ export default {
         .createUserWithEmailAndPassword(v.email, v.password)
         .then(
           () => {
-            v.successMessage = "Register Successfully.";
+            v.successMessage = "Registered Successfully.";
             v.xhrRequest = false;
           },
           (error) => {
-            let errorResponse = JSON.parse(error.message);
-            v.errorMessage = errorResponse.error.message;
+            v.errorMessage = error.message.slice(10);
             v.xhrRequest = false;
           }
         );
     },
+        loginRequest() {
+            let v = this;
+
+            v.xhrRequest = true;
+            v.errorMessage = "";
+            v.successMessage = "";
+
+            firebase.auth().signInWithEmailAndPassword(v.email, v.password).then(
+                () => {
+                    //alert('Logged in as', this.username)
+                    //this.$router.replace('dashboard')
+                    v.xhrRequest = false;
+                }, 
+                (error) => {
+                    v.errorMessage = error.message;
+                    v.xhrRequest = false;
+                }
+            )
+        },
   },
 };
 </script>
