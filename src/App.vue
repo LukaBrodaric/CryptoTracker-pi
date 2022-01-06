@@ -41,9 +41,12 @@
           <router-link to="/settings">Settings</router-link>
         </li>
       </ul>
-      <br />
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+      <br />   
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" v-if="refresh==1">
         <router-link to="/signup">Sign In</router-link>
+      </button>
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" v-if="refresh==0">
+        <a href="#" @click="logout()" class="nav-link">Sign out</a>
       </button>
     </div>
   </nav>
@@ -72,3 +75,48 @@
   }
 }
 </style>
+
+<script>
+import store from '@/store';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
+export default {
+  name : 'app',
+  data() {
+    return {
+     store,
+     refresh : 0
+    };
+  },
+  mounted(){
+    this.Observer();
+    //alert(store.currentUser);
+  },
+  methods: {
+  Observer(){
+  firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in.
+    console.log("Logged in as ",user.email);
+    store.currentUser = user.email;
+    this.refresh= 0;
+  } else {
+    // User is signed out
+    console.log("No user logged in");
+    store.currentUser = null;
+    this.refresh=1;
+  }
+})
+    },
+logout(){
+firebase.auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name : 'Signup'});
+        });
+},
+  }
+}
+</script>

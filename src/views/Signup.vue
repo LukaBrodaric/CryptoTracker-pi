@@ -26,7 +26,7 @@
       </form>
     </div>
     <div class="form-container sign-in-container">
-      <div v-if="errorMessage !== ''" class="alert alert-danger" role="alert">
+      <div v-if="errorMessage !== ''" class="alert alert-danger position-absolute" role="alert">
         {{ errorMessage }}
       </div>
       <div v-if="successMessage !== ''" class="alert alert-success" role="alert">
@@ -125,7 +125,7 @@ a {
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  min-height: 600px;
+  min-height: 640px;
   margin-top: 150px;
 }
 
@@ -355,12 +355,12 @@ export default {
 
             firebase.auth().signInWithEmailAndPassword(v.email, v.password).then(
                 () => {
-                    //alert('Logged in as', this.username)
-                    //this.$router.replace('dashboard')
+                    alert('Successfully logged in');
+                    v.$router.replace({name:"Home"});
                     v.xhrRequest = false;
                 }, 
                 (error) => {
-                    v.errorMessage = error.message;
+                    v.errorMessage = error.message.slice(10);
                     v.xhrRequest = false;
                 }
             )
