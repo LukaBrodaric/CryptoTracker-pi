@@ -356,8 +356,8 @@ export default {
             firebase.auth().signInWithEmailAndPassword(v.email, v.password).then(
                 () => {
                     alert('Successfully logged in');
-                    v.$router.replace({name:"Home"});
                     v.xhrRequest = false;
+                    v.$router.replace({name: 'Home'});
                 }, 
                 (error) => {
                     v.errorMessage = error.message.slice(10);

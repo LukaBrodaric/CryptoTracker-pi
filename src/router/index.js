@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Landingpage from "../views/Landingpage.vue";
+import store from "@/store";
 
 const routes = [
   {
@@ -15,6 +16,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Home.vue"),
+  meta:{
+    needsUser: true,
+    },
   },
   {
     path: "/portfolio",
@@ -24,6 +28,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Portfolio.vue"),
+      meta:{
+        needsUser: true,
+        },
   },
   {
     path: "/login",
@@ -60,6 +67,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Settings.vue"),
+      meta:{
+        needsUser: true,
+        },
   },
 ];
 
@@ -67,5 +77,17 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+router.beforeEach((to, from, next)  => {
+console.log('Stara ruta', from.name, ' -> ', to.name, 'korisnik', store.currentUser);
+const noUser = store.currentUser === null;
+
+if (noUser && to.meta.needsUser) {
+  console.log("Ne dopustam");
+  next('Signup');
+} else { next();
+  }
+}
+)
 
 export default router;

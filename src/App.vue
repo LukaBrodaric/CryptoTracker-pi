@@ -29,7 +29,7 @@
           <router-link to="/Home">Home</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <li class="nav-item">
+        <li class="nav-item" v-if="refresh==0">
           <router-link to="/portfolio">Portfolio</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -37,7 +37,7 @@
           <router-link to="/news">News</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <li class="nav-item">
+        <li class="nav-item" v-if="refresh==0">
           <router-link to="/settings">Settings</router-link>
         </li>
       </ul>
@@ -77,6 +77,7 @@
 </style>
 
 <script>
+import router from '@/router';
 import store from '@/store';
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -97,16 +98,24 @@ export default {
   methods: {
   Observer(){
   firebase.auth().onAuthStateChanged((user) => {
+  const currentRoute = router.currentRoute;
   if (user) {
     // User is signed in.
     console.log("Logged in as ",user.email);
     store.currentUser = user.email;
     this.refresh= 0;
+    //ovo mi nije radilo i ne znam dal radi
+    if(!currentRoute.meta.needsUser){
+      router.push({name: 'Home'});
+    }
   } else {
     // User is signed out
     console.log("No user logged in");
     store.currentUser = null;
     this.refresh=1;
+    if (currentRoute.meta.needsUser) {
+      router.push({ name: 'Signup' })
+    }
   }
 })
     },
