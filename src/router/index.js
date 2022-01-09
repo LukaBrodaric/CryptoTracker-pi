@@ -49,6 +49,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Signup.vue"),
+      meta:{
+        needsUser: false,
+        },
   },
   {
     path: "/news",
@@ -78,16 +81,21 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next)  => {
-console.log('Stara ruta', from.name, ' -> ', to.name, 'korisnik', store.currentUser);
-const noUser = store.currentUser === null;
-
-if (noUser && to.meta.needsUser) {
-  console.log("Ne dopustam");
-  next('Signup');
-} else { next();
+setTimeout(() => {router.beforeEach((to, from, next)  => {
+  console.log('Stara ruta', from.name, ' -> ', to.name, 'korisnik', store.currentUser);
+  const noUser = store.currentUser === null;
+  
+  if (noUser && to.meta.needsUser ) { // ako korisnik nije logiran, a stranica zahtjeva login
+    console.log("Ne dopustam");
+    next('Signup');
+  } else { next();
+    }
+    if (!noUser && !to.meta.needsUser) { // ako je korisnik logiran, a stranica ne zahtjeva login
+      console.log(store.currentUser);
+      next('Home');
+    } else console.log('error');
   }
-}
-)
+  )}, 2000)
+
 
 export default router;

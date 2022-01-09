@@ -25,7 +25,7 @@
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item">
+        <li class="nav-item" v-if="refresh==0">
           <router-link to="/Home">Home</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -33,7 +33,7 @@
           <router-link to="/portfolio">Portfolio</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <li class="nav-item">
+        <li class="nav-item" v-if="refresh==0">
           <router-link to="/news">News</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -105,7 +105,7 @@ export default {
     store.currentUser = user.email;
     this.refresh= 0;
     //ovo mi nije radilo i ne znam dal radi
-    if(!currentRoute.meta.needsUser){
+    if(!currentRoute.value.meta.needsUser){
       router.push({name: 'Home'});
     }
   } else {
@@ -113,7 +113,7 @@ export default {
     console.log("No user logged in");
     store.currentUser = null;
     this.refresh=1;
-    if (currentRoute.meta.needsUser) {
+    if (currentRoute.value.meta.needsUser) {
       router.push({ name: 'Signup' })
     }
   }
