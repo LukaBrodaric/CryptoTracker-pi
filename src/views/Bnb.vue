@@ -26,25 +26,25 @@
           </li>
         </ul>
 
-        <!-- Div sa imenom i slikom -->
-        <div class="single-currency">
+        <!--  Div sa imenom i slikom -->
+        <div class="single-currency" data-item="currency-bnb">
           <div class="currency-price-div">
             <div class="left">
-              <img src="@/assets/btc.png" alt="" class="currency-logo" />
+              <img src="@/assets/bnb.png" alt="" class="currency-logo" />
               <div>
-                <h4 class="sort-name">btc</h4>
-                <span class="full-name">Bitcoin</span>
+                <h4 class="sort-name">bnb</h4>
+                <span class="full-name">Binance coin</span>
               </div>
             </div>
             <div class="right">
-              <h4 class="current-price">&#36;64,420.00</h4>
-              <span class="currency-qnt">1.00 btc</span>
+              <h4 class="current-price">&#36;716.32</h4>
+              <span class="currency-qnt">1.00 bnb</span>
             </div>
           </div>
 
-          <!-- Ovdje ide live graf -->
+          <!-- Ovdje ide live graf  -->
           <div class="currency-chart">
-            <div id="btcChart"></div>
+            <div id="bnbChart"></div>
           </div>
 
           <div class="london text-center">
@@ -53,26 +53,25 @@
             <br />
             BUBIC JE GAY
           </div>
-
           <!-- Total balance -->
           <div class="currency-balance-div">
             <div class="left">
               <p>Total balance</p>
-              <h5>0.08743</h5>
+              <h5>12.01</h5>
             </div>
             <div class="right">
-              <h5>&#36;5,632.24</h5>
+              <h5>&#36;8,603.01</h5>
             </div>
           </div>
 
-          <div class="balance-reminder btc-reminder">
+          <div class="balance-reminder bnb-reminder">
             <a href="#" class="reminder-btn">Add reminder</a>
             <ion-icon name="reorder-two"></ion-icon>
           </div>
 
           <!-- Ovdje idu Live vjesti -->
           <div class="currency-news-div">
-            <a href="#" class="news-div">
+            <a href="#" class="news-header">
               <h2>News</h2>
               <h3>
                 <span>All </span>
@@ -82,15 +81,15 @@
             <ul class="news-list">
               <li>
                 <div>
-                  <h3 class="news-title">Goldman Sachs:</h3>
-                  <p>Gold is becoming poor man's crypto</p>
+                  <h3 class="news-title">New BinanceNFT Mystery box</h3>
+                  <p>Binance is launching a new mystery box</p>
                 </div>
                 <ion-icon name="reorder-two"></ion-icon>
               </li>
               <li>
                 <div>
-                  <h3 class="news-title">Regulation:</h3>
-                  <p>Every large bank will consider BTC in 1-3 years</p>
+                  <h3 class="news-title">Gaming - Faraland</h3>
+                  <p>Will be officially launched on Binance SC</p>
                 </div>
                 <ion-icon name="reorder-two"></ion-icon>
               </li>
@@ -321,8 +320,8 @@ body {
   margin: 16px 8px 0;
 }
 
-.currency-div .balance-reminder.btc-reminder {
-  background-color: #e0c11d12;
+.currency-div .balance-reminder.bnb-reminder {
+  background-color: #faff0012;
 }
 
 .currency-div .balance-reminder .reminder-btn {

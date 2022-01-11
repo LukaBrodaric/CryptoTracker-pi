@@ -29,7 +29,7 @@
           <router-link to="/Home">Home</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <li class="nav-item" v-if="refresh==0">
+        <li class="nav-item" v-if="refresh == 0">
           <router-link to="/portfolio">Portfolio</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -37,15 +37,23 @@
           <router-link to="/news">News</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <li class="nav-item" v-if="refresh==0">
+        <li class="nav-item" v-if="refresh == 0">
           <router-link to="/settings">Settings</router-link>
         </li>
       </ul>
-      <br />   
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" v-if="refresh==1">
+      <br />
+      <button
+        class="btn btn-outline-primary my-2 my-sm-0"
+        type="submit"
+        v-if="refresh == 1"
+      >
         <router-link to="/signup">Sign In</router-link>
       </button>
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" v-if="refresh==0">
+      <button
+        class="btn btn-outline-primary my-2 my-sm-0"
+        type="submit"
+        v-if="refresh == 0"
+      >
         <a href="#" @click="logout()" class="nav-link">Sign out</a>
       </button>
     </div>
@@ -60,6 +68,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  //background-color: #f6f5f7;
 }
 
 #nav {
@@ -77,55 +86,56 @@
 </style>
 
 <script>
-import router from '@/router';
-import store from '@/store';
+import router from "@/router";
+import store from "@/store";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 export default {
-  name : 'app',
+  name: "app",
   data() {
     return {
-     store,
-     refresh : 0
+      store,
+      refresh: 0,
     };
   },
-  mounted(){
+  mounted() {
     this.Observer();
     //alert(store.currentUser);
   },
   methods: {
-  Observer(){
-  firebase.auth().onAuthStateChanged((user) => {
-  const currentRoute = router.currentRoute;
-  if (user) {
-    // User is signed in.
-    console.log("Logged in as ",user.email);
-    store.currentUser = user.email;
-    this.refresh= 0;
-    //ovo mi nije radilo i ne znam dal radi
-    if(!currentRoute.meta.needsUser){
-      router.push({name: 'Home'});
-    }
-  } else {
-    // User is signed out
-    console.log("No user logged in");
-    store.currentUser = null;
-    this.refresh=1;
-    if (currentRoute.meta.needsUser) {
-      router.push({ name: 'Signup' })
-    }
-  }
-})
+    Observer() {
+      firebase.auth().onAuthStateChanged((user) => {
+        const currentRoute = router.currentRoute;
+        if (user) {
+          // User is signed in.
+          console.log("Logged in as ", user.email);
+          store.currentUser = user.email;
+          this.refresh = 0;
+          //ovo mi nije radilo i ne znam dal radi
+          if (!currentRoute.meta.needsUser) {
+            router.push({ name: "Home" });
+          }
+        } else {
+          // User is signed out
+          console.log("No user logged in");
+          store.currentUser = null;
+          this.refresh = 1;
+          if (currentRoute.meta.needsUser) {
+            router.push({ name: "Signup" });
+          }
+        }
+      });
     },
-logout(){
-firebase.auth()
+    logout() {
+      firebase
+        .auth()
         .signOut()
         .then(() => {
-          this.$router.push({ name : 'Signup'});
+          this.$router.push({ name: "Signup" });
         });
-},
-  }
-}
+    },
+  },
+};
 </script>

@@ -129,7 +129,7 @@ p {
 
 button {
   border-radius: 4px;
-  background-color: #0099ff;
+  background: linear-gradient(to right, #0099ff, #710ca0);
   border: none;
   color: #fff !important;
   text-align: center;
