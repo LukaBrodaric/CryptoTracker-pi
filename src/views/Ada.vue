@@ -7,7 +7,7 @@
         <!-- Izbronik valuta -->
         <ul class="currency-nav">
           <li>
-            <router-link to="/Home">Home</router-link>
+            <router-link to="/Home">BTC</router-link>
           </li>
           <li>
             <router-link to="/Eth">ETH</router-link>
