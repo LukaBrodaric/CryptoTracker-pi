@@ -93,49 +93,48 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 export default {
-  name: "app",
+  name : 'app',
   data() {
     return {
-      store,
-      refresh: 0,
+     store,
+     refresh : 0
     };
   },
-  mounted() {
+  mounted(){
     this.Observer();
     //alert(store.currentUser);
   },
   methods: {
-    Observer() {
-      firebase.auth().onAuthStateChanged((user) => {
-        const currentRoute = router.currentRoute;
-        if (user) {
-          // User is signed in.
-          console.log("Logged in as ", user.email);
-          store.currentUser = user.email;
-          this.refresh = 0;
-          //ovo mi nije radilo i ne znam dal radi
-          if (!currentRoute.meta.needsUser) {
-            router.push({ name: "Home" });
-          }
-        } else {
-          // User is signed out
-          console.log("No user logged in");
-          store.currentUser = null;
-          this.refresh = 1;
-          if (currentRoute.meta.needsUser) {
-            router.push({ name: "Signup" });
-          }
-        }
-      });
+  Observer(){
+  firebase.auth().onAuthStateChanged((user) => {
+  const currentRoute = router.currentRoute;
+  if (user) {
+    // User is signed in.
+    console.log("Logged in as ",user.email);
+    store.currentUser = user.email;
+    this.refresh= 0;
+    //ovo mi nije radilo i ne znam dal radi
+    if(!currentRoute.value.meta.needsUser){
+      router.push({name: 'Home'});
+    }
+  } else {
+    // User is signed out
+    console.log("No user logged in");
+    store.currentUser = null;
+    this.refresh=1;
+    if (currentRoute.value.meta.needsUser) {
+      router.push({ name: 'Signup' })
+    }
+  }
+})
     },
-    logout() {
-      firebase
-        .auth()
+logout(){
+firebase.auth()
         .signOut()
         .then(() => {
-          this.$router.push({ name: "Signup" });
+          this.$router.push({ name : 'Signup'});
         });
-    },
-  },
-};
+},
+  }
+}
 </script>
