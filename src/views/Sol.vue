@@ -6,7 +6,7 @@
       <section class="container currency-div">
         <!-- Izbronik valuta -->
         <ul class="currency-nav">
-          <li class="currency-active">
+          <li>
             <router-link to="/Home">Home</router-link>
           </li>
           <li>
@@ -21,7 +21,7 @@
           <li>
             <router-link to="/Bnb">BNB</router-link>
           </li>
-          <li>
+          <li class="currency-active">
             <router-link to="/Sol">SOL</router-link>
           </li>
         </ul>
@@ -51,7 +51,7 @@
             <br />
             <br />
             <br />
-            BUBIC JE GAY
+            Ovdje ide chart
           </div>
           <!-- Total balance -->
           <div class="currency-balance-div">
@@ -71,7 +71,7 @@
 
           <!-- Ovdje idu Live vjesti -->
           <div class="currency-news-div">
-            <a href="#" class="news-header">
+            <a href="/news" class="news-header">
               <h2>News</h2>
               <h3>
                 <span>All </span>

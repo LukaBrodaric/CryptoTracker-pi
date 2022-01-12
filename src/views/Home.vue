@@ -51,7 +51,7 @@
             <br />
             <br />
             <br />
-            BUBIC JE GAY
+            Ovdje ide chart
           </div>
 
           <!-- Total balance -->
@@ -72,7 +72,7 @@
 
           <!-- Ovdje idu Live vjesti -->
           <div class="currency-news-div">
-            <a href="#" class="news-div">
+            <a href="/news" class="news-header">
               <h2>News</h2>
               <h3>
                 <span>All </span>
