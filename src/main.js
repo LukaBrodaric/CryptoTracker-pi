@@ -15,6 +15,9 @@ var firebaseConfig = {
   messagingSenderId: "1066916108373",
   appId: "1:1066916108373:web:b19c3505f556ab84829cdc"
 };
+
+//let db = firebase.firestore();
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -22,4 +25,4 @@ const app = createApp(App);
 app.use(router);
 app.mount("#app");
 
-//export default {firebase};
+//export default {db};

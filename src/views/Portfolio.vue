@@ -29,8 +29,26 @@
             <br /><br />
             <h1>Voilà!</h1>
             <div>
-              Ovdje bi mogli dodati kao da se dodaju valute
-              <ul class="currency-div">
+             <form action="calcular.php" method="post">
+      <h1>Choose a cryptocurrency</h1>
+      <select name="producto" class="form-control" id="" v-model="novaValuta">
+        <option value="BTC">BTC</option>
+        <option value="ETH">ETH</option>
+        <option value="LTC">LTC</option>
+        <option value="ADA">ADA</option>
+        <option value="BNB">BNB</option>
+        <option value="SOL">SOL</option>
+      </select>
+      <label for="">Amount: </label>
+<input
+type="number"
+class="form-control"
+placeholder="e.g. 1.00"
+v-model="novaKolicina"
+/>
+      <input type="submit" value="Update" @click.prevent="unesiValutu()">
+    </form>
+             <!-- <ul class="currency-div">
                 <li>
                   <div class="lijevo">
                     <h5>BTC</h5>
@@ -45,6 +63,7 @@
                       type="number"
                       class="form-control"
                       placeholder="Količina"
+                      v-model="kolicina"
                     />
                   </div>
                 </li>
@@ -68,7 +87,7 @@
                     <h5>SOL</h5>
                   </div>
                 </li>
-              </ul>
+              </ul> -->
             </div>
           </div>
         </div>
@@ -171,6 +190,44 @@
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
+
+#open-modal{
+  * {
+  box-sizing: border-box;
+}
+body {
+  color: white;
+  font-family: sans-serif;
+}
+
+form {
+  margin: auto;
+  padding: 20px;
+  margin-top: 20px;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+label, input,select {
+  width: 100%;
+  display: block;
+  font-size: 1.2em;
+}
+input, select {
+  padding: 5px;
+  margin-bottom: 20px;
+}
+input[type="submit"] {
+  width: 30%;
+  margin: auto;
+  background: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+}
 
 .container,
 .container-fluid,
@@ -450,3 +507,36 @@
   text-align: right;
 }
 </style>
+
+<script>
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import store from "@/store"
+let db = firebase.firestore();
+
+
+export default {
+  name: 'portfolio',
+  data: function() {
+    return {
+      novaValuta: "",
+      novaKolicina: "",
+    };
+  },
+methods: {
+  unesiValutu(){
+    console.log('ok');
+    const valuta = this.novaValuta;
+    const kolicina = this.novaKolicina;
+    db.collection("valute i kolicina").doc("kriptovaluta").set({
+      naziv: valuta,
+      vrijednost: kolicina,
+      korisnik: store.currentUser,
+    })
+    .then((doc) => {console.log("Spremljeno! ", doc)})
+    .catch((e) =>{console.error(e)});
+  }
+}
+}
+</script>
