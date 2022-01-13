@@ -69,6 +69,7 @@
                   </div>
                 </li>
               </ul>
+              <button type="button" class="btn btn-primary">Add</button>
             </div>
           </div>
         </div>
