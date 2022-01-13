@@ -18,7 +18,60 @@
         <h3>$0.00</h3>
       </div>
       <div class="add-btn">
-        <a href="#">Add</a>
+        <div class="container">
+          <div class="interior">
+            <a class="btn" href="#open-modal">Dodavanje valuta</a>
+          </div>
+        </div>
+        <div id="open-modal" class="modal-window">
+          <div>
+            <a href="#" title="Close" class="modal-close">Close</a>
+            <br /><br />
+            <h1>Voilà!</h1>
+            <div>
+              Ovdje bi mogli dodati kao da se dodaju valute
+              <ul class="currency-div">
+                <li>
+                  <div class="lijevo">
+                    <h5>BTC</h5>
+                  </div>
+                </li>
+                <li>
+                  <div class="lijevo">
+                    <h5>ETH</h5>
+                  </div>
+                  <div class="col-7">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Količina"
+                    />
+                  </div>
+                </li>
+                <li>
+                  <div class="lijevo">
+                    <h5>LTC</h5>
+                  </div>
+                </li>
+                <li>
+                  <div class="lijevo">
+                    <h5>ADA</h5>
+                  </div>
+                </li>
+                <li>
+                  <div class="lijevo">
+                    <h5>BNB</h5>
+                  </div>
+                </li>
+                <li>
+                  <div class="lijevo">
+                    <h5>SOL</h5>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
       <ul class="currency-div">
         <li>
@@ -242,6 +295,7 @@
   -ms-flex-pack: center;
   justify-content: center;
   margin-top: 16px;
+  margin-bottom: 50px;
 }
 
 .currency-portfolio-div .add-btn a {
@@ -303,6 +357,8 @@
   font-size: 16px;
   text-transform: uppercase;
   color: #17171a;
+  text-align: left;
+  margin-left: 5px;
 }
 
 .currency-portfolio-div .currency-div li a .left p {
@@ -310,7 +366,8 @@
   font-size: 12px;
   color: #b9c1d9;
   margin-top: 2px;
-  margin-left: 2px;
+  margin-left: 5px;
+  text-align: left;
 }
 
 .currency-portfolio-div .currency-div li a .right {
@@ -329,5 +386,67 @@
   font-size: 12px;
   color: #b9c1d9;
   margin-top: 2px;
+}
+.modal-window {
+  position: fixed;
+  background-color: #aaa9aa73;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  &:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  & > div {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background: white;
+  }
+  header {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+  &:hover {
+    color: black;
+  }
+}
+
+.lijevo h5 {
+  font-weight: 900;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #17171a;
+  text-align: left;
+  margin-left: 5px;
+}
+
+.desno {
+  text-align: right;
 }
 </style>
