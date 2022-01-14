@@ -20,14 +20,14 @@
       <div class="add-btn">
         <div class="container">
           <div class="interior">
-            <a class="btn" href="#open-modal">Dodavanje valuta</a>
+            <a class="btn" href="#open-modal">Click here to set your currencies</a>
           </div>
         </div>
         <div id="open-modal" class="modal-window">
           <div>
             <a href="#" title="Close" class="modal-close">Close</a>
             <br /><br />
-            <h1>Voilà!</h1>
+            <h1><b>Update your wallet</b></h1>
             <div>
              <form action="calcular.php" method="post">
       <h1>Choose a cryptocurrency</h1>
@@ -48,46 +48,6 @@ v-model="novaKolicina"
 />
       <input type="submit" value="Update" @click.prevent="unesiValutu()">
     </form>
-             <!-- <ul class="currency-div">
-                <li>
-                  <div class="lijevo">
-                    <h5>BTC</h5>
-                  </div>
-                </li>
-                <li>
-                  <div class="lijevo">
-                    <h5>ETH</h5>
-                  </div>
-                  <div class="col-7">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="Količina"
-                      v-model="kolicina"
-                    />
-                  </div>
-                </li>
-                <li>
-                  <div class="lijevo">
-                    <h5>LTC</h5>
-                  </div>
-                </li>
-                <li>
-                  <div class="lijevo">
-                    <h5>ADA</h5>
-                  </div>
-                </li>
-                <li>
-                  <div class="lijevo">
-                    <h5>BNB</h5>
-                  </div>
-                </li>
-                <li>
-                  <div class="lijevo">
-                    <h5>SOL</h5>
-                  </div>
-                </li>
-              </ul> -->
             </div>
           </div>
         </div>
@@ -515,27 +475,78 @@ import "firebase/compat/firestore";
 import store from "@/store"
 let db = firebase.firestore();
 
-
 export default {
   name: 'portfolio',
   data: function() {
     return {
       novaValuta: "",
       novaKolicina: "",
+      refresh : 0,
     };
   },
+mounted(){
+setTimeout(() => {
+this.getWallet();
+}, 2000)
+},
 methods: {
+  getWallet(){
+  console.log(store.currentUser);
+  var docRef = db.collection("wallet").doc(store.currentUser);
+  docRef.get().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+  }).catch((error) => {
+      console.log("Error getting document:", error);
+  })},
+  izracunajkripto(){
+    store.kolicinacrypto * BTC;
+  },
   unesiValutu(){
-    console.log('ok');
     const valuta = this.novaValuta;
     const kolicina = this.novaKolicina;
-    db.collection("valute i kolicina").doc("kriptovaluta").set({
+    db.collection("povijest uplata").add({
       naziv: valuta,
       vrijednost: kolicina,
       korisnik: store.currentUser,
+      vrijeme: new Date(Date.now()+3600000).toISOString(),
     })
-    .then((doc) => {console.log("Spremljeno! ", doc)})
+    .then((doc) => {
+      console.log("Spremljeno! ", doc),
+      alert('Currency updated!');
+      window.location.reload();
+      })
     .catch((e) =>{console.error(e)});
+
+   /* db.collection("wallet").doc(store.currentUser).set({
+    switch(valuta) {
+  case "BTC":
+    btc:
+    break;
+  case "ETH":
+    // code block
+    break;
+  case "LTC":
+    // code block
+    break;
+  case "ADA":
+    // code block
+    break;
+  case "BNB":
+    // code block
+    break;
+  case "SOL":
+    // code block
+    break;
+  default:
+    // code block
+}
+    })
+    */
   }
 }
 }

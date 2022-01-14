@@ -306,6 +306,8 @@ button.ghost {
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+let db = firebase.firestore();
+import store from '@/store';
 export default {
   name: "Signup",
   data() {
@@ -339,6 +341,14 @@ export default {
           () => {
             v.successMessage = "Registered Successfully.";
             v.xhrRequest = false;
+            db.collection("wallet").doc(store.currentUser).set({
+              BTC: 0,
+              ETH: 0,
+              LTC: 0,
+              ADA: 0,
+              BNB: 0,
+              SOL: 0,
+            })  
           },
           (error) => {
             v.errorMessage = error.message.slice(10);

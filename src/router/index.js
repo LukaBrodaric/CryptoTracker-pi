@@ -142,7 +142,7 @@ setTimeout(() => {router.beforeEach((to, from, next)  => {
     if (!noUser && !to.meta.needsUser) { // ako je korisnik logiran, a stranica ne zahtjeva login
       console.log(store.currentUser);
       next('Home');
-    } else console.log('error');
+    }
   }
   )}, 2000)
 
