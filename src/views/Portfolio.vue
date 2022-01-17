@@ -64,7 +64,7 @@ v-model="novaKolicina"
             </div>
             <div class="right">
               <h4>$0.00</h4>
-              <p>0 btc</p>
+              <p>{{this.BTC}} btc</p>
             </div>
           </a>
         </li>
@@ -79,7 +79,7 @@ v-model="novaKolicina"
             </div>
             <div class="right">
               <h4>$0.00</h4>
-              <p>0 eth</p>
+              <p>{{this.ETH}} eth</p>
             </div>
           </a>
         </li>
@@ -94,7 +94,7 @@ v-model="novaKolicina"
             </div>
             <div class="right">
               <h4>$0.00</h4>
-              <p>0 ltc</p>
+              <p>{{this.LTC}} ltc</p>
             </div>
           </a>
         </li>
@@ -109,7 +109,7 @@ v-model="novaKolicina"
             </div>
             <div class="right">
               <h4>$0.00</h4>
-              <p>0 ada</p>
+              <p>{{this.ADA}} ada</p>
             </div>
           </a>
         </li>
@@ -124,7 +124,7 @@ v-model="novaKolicina"
             </div>
             <div class="right">
               <h4>$0.00</h4>
-              <p>0 bnb</p>
+              <p>{{this.BNB}} bnb</p>
             </div>
           </a>
         </li>
@@ -139,7 +139,7 @@ v-model="novaKolicina"
             </div>
             <div class="right">
               <h4>$0.00</h4>
-              <p>0 sol</p>
+              <p>{{this.SOL}} sol</p>
             </div>
           </a>
         </li>
@@ -482,6 +482,12 @@ export default {
       novaValuta: "",
       novaKolicina: "",
       refresh : 0,
+      BTC: 0,
+      ETH: 0,
+      LTC: 0,
+      ADA: 0,
+      BNB: 0,
+      SOL: 0,
     };
   },
 mounted(){
@@ -496,6 +502,13 @@ methods: {
   docRef.get().then((doc) => {
       if (doc.exists) {
         console.log("Document data:", doc.data());
+        this.BTC = doc.data().BTC;
+        this.LTC = doc.data().LTC;
+        this.ADA = doc.data().ADA;
+        this.BNB = doc.data().BNB;
+        this.SOL = doc.data().SOL;
+        this.ETH = doc.data().ETH;
+ console.log(this.BTC, this.LTC, this.ADA, this.BNB, this.SOL, this.ETH);
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -504,7 +517,8 @@ methods: {
       console.log("Error getting document:", error);
   })},
   izracunajkripto(){
-    store.kolicinacrypto * BTC;
+  // ovdje ubacimo valutu cija se cijena mjenja i onda * kolicina od neke valute
+  
   },
   unesiValutu(){
     const valuta = this.novaValuta;
@@ -518,10 +532,39 @@ methods: {
     .then((doc) => {
       console.log("Spremljeno! ", doc),
       alert('Currency updated!');
+         switch(valuta) {
+  case "BTC":
+    this.BTC = kolicina
+    break;
+  case "ETH":
+    this.ETH = kolicina
+    break;
+  case "LTC":
+    this.LTC = kolicina
+    break;
+  case "ADA":
+    this.ADA = kolicina
+    break;
+  case "BNB":
+    this.BNB = kolicina
+    break;
+  case "SOL":
+    this.SOL = kolicina
+    break;
+  default:
+}
+      db.collection("wallet").doc(store.currentUser).set({
+        BTC: this.BTC,
+        ETH: this.ETH,
+        LTC: this.LTC,
+        ADA: this.ADA,
+        BNB: this.BNB,
+        SOL: this.SOL,
+      });
       window.location.reload();
       })
     .catch((e) =>{console.error(e)});
-
+  }
    /* db.collection("wallet").doc(store.currentUser).set({
     switch(valuta) {
   case "BTC":
@@ -547,7 +590,6 @@ methods: {
 }
     })
     */
-  }
 }
 }
 </script>
