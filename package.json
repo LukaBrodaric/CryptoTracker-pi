@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/core": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
+    "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "firebase": "^9.6.1",
     "vue": "^3.0.0",

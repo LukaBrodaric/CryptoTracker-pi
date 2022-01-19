@@ -62,8 +62,9 @@ v-model="novaKolicina"
                 <p>Bitcoin</p>
               </div>
             </div>
-            <div class="right">
-              <h4>$0.00</h4>
+            <div class="right" id="crypto-container" v-for="(value, key) in cryptos" :key="value" >
+              <h4>{{key}}</h4>
+              <h4>{{value}}</h4>
               <p>{{this.BTC}} btc</p>
             </div>
           </a>
@@ -474,6 +475,7 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import store from "@/store"
 let db = firebase.firestore();
+import axios from 'axios';
 
 export default {
   name: 'portfolio',
@@ -488,10 +490,20 @@ export default {
       ADA: 0,
       BNB: 0,
       SOL: 0,
+      cryptos: [],
+      errors: [],
     };
   },
 mounted(){
 setTimeout(() => {
+axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR')
+.then(response => {
+  this.cryptos=response.data
+  console.log(response);
+})
+.catch(e => {
+this.errors.push(e)
+})
 this.getWallet();
 }, 2000)
 },
