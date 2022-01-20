@@ -57,13 +57,13 @@ const routes = [
     },
   },
   {
-    path: "/Settings",
-    name: "Settings",
+    path: "/Settingspage",
+    name: "Settingspage",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Settings.vue"),
+      import(/* webpackChunkName: "about" */ "../views/Settingspage.vue"),
     meta: {
       needsUser: true,
     },
@@ -130,21 +130,31 @@ const router = createRouter({
   routes,
 });
 
-setTimeout(() => {router.beforeEach((to, from, next)  => {
-  console.log('Stara ruta', from.name, ' -> ', to.name, 'korisnik', store.currentUser);
-  const noUser = store.currentUser === null;
-  
-  if (noUser && to.meta.needsUser ) { // ako korisnik nije logiran, a stranica zahtjeva login
-    console.log("Ne dopustam");
-    next('Signup');
-  } else { next();
-    }
-    if (!noUser && !to.meta.needsUser) { // ako je korisnik logiran, a stranica ne zahtjeva login
-      console.log(store.currentUser);
-      next('Home');
-    }
-  }
-  )}, 2000)
+setTimeout(() => {
+  router.beforeEach((to, from, next) => {
+    console.log(
+      "Stara ruta",
+      from.name,
+      " -> ",
+      to.name,
+      "korisnik",
+      store.currentUser
+    );
+    const noUser = store.currentUser === null;
 
+    if (noUser && to.meta.needsUser) {
+      // ako korisnik nije logiran, a stranica zahtjeva login
+      console.log("Ne dopustam");
+      next("Signup");
+    } else {
+      next();
+    }
+    if (!noUser && !to.meta.needsUser) {
+      // ako je korisnik logiran, a stranica ne zahtjeva login
+      console.log(store.currentUser);
+      next("Home");
+    }
+  });
+}, 2000);
 
 export default router;
