@@ -62,9 +62,9 @@ v-model="novaKolicina"
                 <p>Bitcoin</p>
               </div>
             </div>
-            <div class="right" id="crypto-container" v-for="(value, key) in cryptos" :key="value" >
-              <h4>{{key}}</h4>
-              <h4>{{value}}</h4>
+            <div class="right">
+              <h4>BTC</h4>
+              <h4>${{(this.cryptos.BTC.USD * this.BTC).toFixed(2)}}</h4>
               <p>{{this.BTC}} btc</p>
             </div>
           </a>
@@ -79,7 +79,8 @@ v-model="novaKolicina"
               </div>
             </div>
             <div class="right">
-              <h4>$0.00</h4>
+              <h4>ETH</h4>
+              <h4>${{(this.cryptos.ETH.USD * this.ETH).toFixed(2)}}</h4>
               <p>{{this.ETH}} eth</p>
             </div>
           </a>
@@ -94,7 +95,8 @@ v-model="novaKolicina"
               </div>
             </div>
             <div class="right">
-              <h4>$0.00</h4>
+              <h4>LTC</h4>
+              <h4>${{(this.cryptos.ETH.USD * this.ETH).toFixed(2)}}</h4>
               <p>{{this.LTC}} ltc</p>
             </div>
           </a>
@@ -109,7 +111,8 @@ v-model="novaKolicina"
               </div>
             </div>
             <div class="right">
-              <h4>$0.00</h4>
+              <h4>ADA</h4>
+              <h4>${{(this.cryptos.ETH.USD * this.ETH).toFixed(2)}}</h4>
               <p>{{this.ADA}} ada</p>
             </div>
           </a>
@@ -124,7 +127,8 @@ v-model="novaKolicina"
               </div>
             </div>
             <div class="right">
-              <h4>$0.00</h4>
+              <h4>BNB</h4>
+              <h4>${{(this.cryptos.BNB.USD * this.BNB).toFixed(2)}}</h4>
               <p>{{this.BNB}} bnb</p>
             </div>
           </a>
@@ -139,7 +143,8 @@ v-model="novaKolicina"
               </div>
             </div>
             <div class="right">
-              <h4>$0.00</h4>
+              <h4>SOL</h4>
+              <h4>${{(this.cryptos.SOL.USD * this.SOL).toFixed(2)}}</h4>
               <p>{{this.SOL}} sol</p>
             </div>
           </a>
@@ -494,18 +499,10 @@ export default {
       errors: [],
     };
   },
-mounted(){
+created(){
 setTimeout(() => {
-axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR')
-.then(response => {
-  this.cryptos=response.data
-  console.log(response);
-})
-.catch(e => {
-this.errors.push(e)
-})
 this.getWallet();
-}, 2000)
+}, 1000)
 },
 methods: {
   getWallet(){
@@ -521,6 +518,14 @@ methods: {
         this.SOL = doc.data().SOL;
         this.ETH = doc.data().ETH;
  console.log(this.BTC, this.LTC, this.ADA, this.BNB, this.SOL, this.ETH);
+axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,ADA,BNB,SOL&tsyms=USD')
+.then(response => {
+  this.cryptos=response.data
+  console.log(this.cryptos.BTC.USD);
+})
+.catch(e => {
+this.errors.push(e)
+})
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -577,31 +582,6 @@ methods: {
       })
     .catch((e) =>{console.error(e)});
   }
-   /* db.collection("wallet").doc(store.currentUser).set({
-    switch(valuta) {
-  case "BTC":
-    btc:
-    break;
-  case "ETH":
-    // code block
-    break;
-  case "LTC":
-    // code block
-    break;
-  case "ADA":
-    // code block
-    break;
-  case "BNB":
-    // code block
-    break;
-  case "SOL":
-    // code block
-    break;
-  default:
-    // code block
-}
-    })
-    */
 }
 }
 </script>

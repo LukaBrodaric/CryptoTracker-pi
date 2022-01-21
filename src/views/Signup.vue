@@ -348,7 +348,7 @@ export default {
               ADA: 0,
               BNB: 0,
               SOL: 0,
-            })  
+            })
           },
           (error) => {
             v.errorMessage = error.message.slice(10);
