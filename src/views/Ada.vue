@@ -44,15 +44,18 @@
 
           <!-- Ovdje ide live graf  -->
           <div class="currency-chart">
-            <div id="adaChart"></div>
+            <div id="ethChart">
+              <VueTradingView
+                :options="{
+                  width: '1000',
+                  height: '520',
+                  symbol: 'BINANCE:ADAUSDT',
+                  theme: 'light',
+                }"
+              />
+            </div>
           </div>
 
-          <div class="london text-center">
-            <br />
-            <br />
-            <br />
-            Ovdje ide chart
-          </div>
           <!-- Total balance -->
           <div class="currency-balance-div">
             <div class="left">
@@ -422,6 +425,12 @@ body {
 .currency-news-div .news-list li ion-icon {
   color: #000000de;
 }
+
+.currency-chart {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lato:wght@400;900&family=Roboto&display=swap");
 
 $fontLato: "Lato", sans-serif;
@@ -432,3 +441,17 @@ $colorPrimary: #000000;
 $colorWhite: #ffffff;
 $colorTretiary: #7676801f;
 </style>
+
+<script>
+import VueTradingView from "vue-trading-view/src/vue-trading-view";
+
+export default {
+  name: "Ada",
+  props: {
+    msg: String,
+  },
+  components: {
+    VueTradingView,
+  },
+};
+</script>
