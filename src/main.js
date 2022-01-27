@@ -1,7 +1,7 @@
 import { createApp } from "vue";
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 import App from "./App.vue";
 import router from "./router";
 
@@ -9,11 +9,12 @@ import router from "./router";
 var firebaseConfig = {
   apiKey: "AIzaSyCv8LdMenvYJoCkIuIrhocsCsnFSfQhBXI",
   authDomain: "cryptotracker-fbe77.firebaseapp.com",
-  databaseURL: "https://cryptotracker-fbe77-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL:
+    "https://cryptotracker-fbe77-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "cryptotracker-fbe77",
   storageBucket: "cryptotracker-fbe77.appspot.com",
   messagingSenderId: "1066916108373",
-  appId: "1:1066916108373:web:b19c3505f556ab84829cdc"
+  appId: "1:1066916108373:web:b19c3505f556ab84829cdc",
 };
 
 //let db = firebase.firestore();
