@@ -131,9 +131,19 @@ export default {
 
 <style scoped>
 #particles-js {
-  background: #222;
-  height: 100%;
   width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: #222;
   background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.body-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 </style>

@@ -1,10 +1,18 @@
 <template>
   <particles />
+
+  <div class="margina">
+    <p class="naslov">
+      Welcome to Crypto<span style="color: #0099ff">Tracker</span>
+    </p>
+    <p class="podnaslov">Keep track on everything. Everywhere.</p>
+  </div>
+
   <button id="botunic">
     <span> <a href="/signup"> GET STARTED </a></span>
   </button>
 
-  <p>Fakultet Informatike u Puli</p>
+  <p class="podnozje">Fakultet Informatike u Puli</p>
 </template>
 
 <style scoped>
@@ -14,13 +22,40 @@
   margin-top: 100px;
 }
 
-p {
+.podnozje {
   position: fixed;
   width: 100%;
   bottom: 30px;
   font-size: 12px;
   color: #999;
   margin-top: 200px;
+}
+
+.botunic {
+  margin-top: 200px;
+}
+
+.margina {
+  margin-bottom: 400px;
+}
+
+.podnaslov {
+  position: fixed;
+  width: 100%;
+  margin-top: 270px;
+  margin-bottom: 100px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: #fff;
+  font-size: 30px;
+}
+.naslov {
+  position: fixed;
+  width: 100%;
+  margin-top: 180px;
+  margin-bottom: 100px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: #fff;
+  font-size: 50px;
 }
 
 button {
