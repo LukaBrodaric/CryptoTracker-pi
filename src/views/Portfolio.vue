@@ -15,7 +15,7 @@
       </div>
       <div class="total">
         <h3>Total:</h3>
-        <h3>$0.00</h3>
+        <h3>${{(this.cryptos.BTC.USD * this.BTC + this.cryptos.ETH.USD * this.ETH + this.cryptos.LTC.USD * this.LTC + this.cryptos.ADA.USD * this.ADA + this.cryptos.BNB.USD * this.BNB +this.cryptos.SOL.USD * this.SOL).toFixed(2)}}</h3>
       </div>
       <div class="add-btn">
         <div class="container">
@@ -96,7 +96,7 @@ v-model="novaKolicina"
             </div>
             <div class="right">
               <h4>LTC</h4>
-              <h4>${{(this.cryptos.ETH.USD * this.ETH).toFixed(2)}}</h4>
+              <h4>${{(this.cryptos.LTC.USD * this.LTC).toFixed(2)}}</h4>
               <p>{{this.LTC}} ltc</p>
             </div>
           </a>
@@ -112,7 +112,7 @@ v-model="novaKolicina"
             </div>
             <div class="right">
               <h4>ADA</h4>
-              <h4>${{(this.cryptos.ETH.USD * this.ETH).toFixed(2)}}</h4>
+              <h4>${{(this.cryptos.ADA.USD * this.ADA).toFixed(2)}}</h4>
               <p>{{this.ADA}} ada</p>
             </div>
           </a>
@@ -533,10 +533,6 @@ this.errors.push(e)
   }).catch((error) => {
       console.log("Error getting document:", error);
   })},
-  izracunajkripto(){
-  // ovdje ubacimo valutu cija se cijena mjenja i onda * kolicina od neke valute
-  
-  },
   unesiValutu(){
     const valuta = this.novaValuta;
     const kolicina = this.novaKolicina;

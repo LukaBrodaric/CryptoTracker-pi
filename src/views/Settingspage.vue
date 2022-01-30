@@ -15,7 +15,7 @@
         <div class="right">
           <div>
             <h2>Edit Profile</h2>
-            <div class="user">@LukaBrodaric</div>
+            <div class="user">{{store.currentUser}}</div>
           </div>
           <ion-icon name="chevron-forward-outline"></ion-icon>
         </div>
@@ -151,7 +151,7 @@
         </li>
       </ul>
 
-      <a href="#" class="sign-out-btn">Sign Out</a>
+      <a href="#" class="sign-out-btn" @click="signout()">Sign Out</a>
     </div>
   </body>
 </template>
@@ -328,3 +328,34 @@ body {
   font-weight: 400;
 }
 </style>
+
+<script>
+import store from "@/store"
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
+export default {
+name: 'settings',
+data: function() {
+  return {
+    store
+    }
+},
+created(){
+setTimeout(() => {
+console.log(store.currentUser);
+}, 1000)
+},
+methods: {
+  signout(){
+          firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "Signup" });
+        });
+  }
+}
+}
+</script>

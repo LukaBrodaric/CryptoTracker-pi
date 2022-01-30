@@ -37,7 +37,7 @@
               </div>
             </div>
             <div class="right">
-              <h4 class="current-price">&#36;4.30</h4>
+              <h4 class="current-price">${{this.cryptos.ADA.USD}}</h4>
               <span class="currency-qnt">1.00 ada</span>
             </div>
           </div>
@@ -60,10 +60,10 @@
           <div class="currency-balance-div">
             <div class="left">
               <p>Total balance</p>
-              <h5>824,04</h5>
+              <h5>{{this.ADA}} ADA</h5>
             </div>
             <div class="right">
-              <h5>&#36;3,543.54</h5>
+              <h5>${{(this.cryptos.ADA.USD * this.ADA).toFixed(2)}}</h5>
             </div>
           </div>
 
@@ -444,14 +444,70 @@ $colorTretiary: #7676801f;
 
 <script>
 import VueTradingView from "vue-trading-view/src/vue-trading-view";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import store from "@/store"
+let db = firebase.firestore();
+import axios from 'axios';
 
 export default {
-  name: "Ada",
+  name: 'ada',
   props: {
     msg: String,
   },
   components: {
     VueTradingView,
   },
-};
+  data: function() {
+    return {
+      novaValuta: "",
+      novaKolicina: "",
+      refresh : 0,
+      BTC: 0,
+      ETH: 0,
+      LTC: 0,
+      ADA: 0,
+      BNB: 0,
+      SOL: 0,
+      cryptos: [],
+      errors: [],
+    };
+  },
+created(){
+setTimeout(() => {
+this.getWallet();
+}, 1000)
+},
+methods: {
+  getWallet(){
+  console.log(store.currentUser);
+  var docRef = db.collection("wallet").doc(store.currentUser);
+  docRef.get().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        this.BTC = doc.data().BTC;
+        this.LTC = doc.data().LTC;
+        this.ADA = doc.data().ADA;
+        this.BNB = doc.data().BNB;
+        this.SOL = doc.data().SOL;
+        this.ETH = doc.data().ETH;
+ console.log(this.BTC, this.LTC, this.ADA, this.BNB, this.SOL, this.ETH);
+axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,ADA,BNB,SOL&tsyms=USD')
+.then(response => {
+  this.cryptos=response.data
+  console.log(this.cryptos.BTC.USD);
+})
+.catch(e => {
+this.errors.push(e)
+})
+      } else {
+        
+        console.log("No such document!");
+      }
+  }).catch((error) => {
+      console.log("Error getting document:", error);
+  })},
+}
+}
 </script>
