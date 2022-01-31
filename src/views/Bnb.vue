@@ -37,7 +37,7 @@
               </div>
             </div>
             <div class="right">
-              <h4 class="current-price">${{this.cryptos.BNB.USD}}</h4>
+              <h4 class="current-price">${{ this.cryptos.BNB.USD }}</h4>
               <span class="currency-qnt">1.00 bnb</span>
             </div>
           </div>
@@ -60,10 +60,10 @@
           <div class="currency-balance-div">
             <div class="left">
               <p>Total balance</p>
-              <h5>{{this.BNB}} BNB</h5>
+              <h5>{{ this.BNB }} BNB</h5>
             </div>
             <div class="right">
-              <h5>${{(this.cryptos.BNB.USD * this.BNB).toFixed(2)}}</h5>
+              <h5>${{ (this.cryptos.BNB.USD * this.BNB).toFixed(2) }}</h5>
             </div>
           </div>
 
@@ -83,17 +83,14 @@
             </a>
             <ul class="news-list">
               <li>
-                <div>
-                  <h3 class="news-title">New BinanceNFT Mystery box</h3>
-                  <p>Binance is launching a new mystery box</p>
-                </div>
-                <ion-icon name="reorder-two"></ion-icon>
-              </li>
-              <li>
-                <div>
-                  <h3 class="news-title">Gaming - Faraland</h3>
-                  <p>Will be officially launched on Binance SC</p>
-                </div>
+                <iframe
+                  width="100%"
+                  scrolling="yes"
+                  allowtransparency="true"
+                  frameborder="0"
+                  src="https://cryptopanic.com/widgets/news/?bg_color=FFFFFF&amp;currencies=BNB&amp;font_family=sans&amp;font_size=20&amp;header_bg_color=2C3E50&amp;header_text_color=FFFFFF&amp;link_color=0099FF&amp;news_feed=recent&amp;posts_limit=3&amp;text_color=2C3E50&amp;title=Trending%20news"
+                  height="350px"
+                ></iframe>
                 <ion-icon name="reorder-two"></ion-icon>
               </li>
             </ul>
@@ -447,23 +444,23 @@ import VueTradingView from "vue-trading-view/src/vue-trading-view";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import store from "@/store"
+import store from "@/store";
 let db = firebase.firestore();
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-  name: 'bnb',
+  name: "bnb",
   props: {
     msg: String,
   },
   components: {
     VueTradingView,
   },
-  data: function() {
+  data: function () {
     return {
       novaValuta: "",
       novaKolicina: "",
-      refresh : 0,
+      refresh: 0,
       BTC: 0,
       ETH: 0,
       LTC: 0,
@@ -474,40 +471,53 @@ export default {
       errors: [],
     };
   },
-created(){
-setTimeout(() => {
-this.getWallet();
-}, 1000)
-},
-methods: {
-  getWallet(){
-  console.log(store.currentUser);
-  var docRef = db.collection("wallet").doc(store.currentUser);
-  docRef.get().then((doc) => {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-        this.BTC = doc.data().BTC;
-        this.LTC = doc.data().LTC;
-        this.ADA = doc.data().ADA;
-        this.BNB = doc.data().BNB;
-        this.SOL = doc.data().SOL;
-        this.ETH = doc.data().ETH;
- console.log(this.BTC, this.LTC, this.ADA, this.BNB, this.SOL, this.ETH);
-axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,ADA,BNB,SOL&tsyms=USD')
-.then(response => {
-  this.cryptos=response.data
-  console.log(this.cryptos.BTC.USD);
-})
-.catch(e => {
-this.errors.push(e)
-})
-      } else {
-        
-        console.log("No such document!");
-      }
-  }).catch((error) => {
-      console.log("Error getting document:", error);
-  })},
-}
-}
+  created() {
+    setTimeout(() => {
+      this.getWallet();
+    }, 1000);
+  },
+  methods: {
+    getWallet() {
+      console.log(store.currentUser);
+      var docRef = db.collection("wallet").doc(store.currentUser);
+      docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            console.log("Document data:", doc.data());
+            this.BTC = doc.data().BTC;
+            this.LTC = doc.data().LTC;
+            this.ADA = doc.data().ADA;
+            this.BNB = doc.data().BNB;
+            this.SOL = doc.data().SOL;
+            this.ETH = doc.data().ETH;
+            console.log(
+              this.BTC,
+              this.LTC,
+              this.ADA,
+              this.BNB,
+              this.SOL,
+              this.ETH
+            );
+            axios
+              .get(
+                "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,ADA,BNB,SOL&tsyms=USD"
+              )
+              .then((response) => {
+                this.cryptos = response.data;
+                console.log(this.cryptos.BTC.USD);
+              })
+              .catch((e) => {
+                this.errors.push(e);
+              });
+          } else {
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    },
+  },
+};
 </script>
