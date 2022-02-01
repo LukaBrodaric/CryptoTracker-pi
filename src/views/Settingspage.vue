@@ -11,7 +11,7 @@
       <!-- Settings i edit profile -->
 
       <a href="#open-modal" class="settings-profile">
-        <img src="@/assets/profile.png" alt="porfile" class="profile-img" />
+        <img :src="picture" alt="porfile" class="profile-img" />
         <div class="right">
           <div>
             <h2>Edit Profile</h2>
@@ -26,10 +26,10 @@
             <a href="#" title="Close" class="modal-close">Close</a>
             <br /><br />
             <h1><b>Select an image</b></h1>
-            <UploadImages :max="1"/>
+            <UploadImages :max="1" @change="handleImages"/>
             <div>
-             <form action="calcular.php" method="post">
-      <input type="submit" value="Upload" @click.prevent="unesiValutu()">
+             <form>
+      <input type="submit" value="Upload" @click.prevent="onUpload">
     </form>
             </div>
           </div>
@@ -667,20 +667,25 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import UploadImages from "vue-upload-drop-images";
+import "firebase/compat/storage";
 
 export default {
 name: 'settings',
 data: function() {
   return {
-    store
+    store,
+    slika: [],
+    imageData: null,
+    picture: null,
     }
 },
  components: {
-                     UploadImages,
-                 },
+  UploadImages,
+  },
 created(){
 setTimeout(() => {
 console.log(store.currentUser);
+this.getImage();
 }, 1000)
 },
 methods: {
@@ -691,7 +696,31 @@ methods: {
         .then(() => {
           this.$router.push({ name: "Signup" });
         });
-  }
+  },
+handleImages(files){
+  this.slika = files.target.files[0]
+
+},
+ onUpload(){
+      const s = 3;
+      const storageRef=firebase.storage().ref(`${store.currentUser}/${this.slika.name}`).put(this.slika);
+      storageRef.on(`state_changed`,snapshot=>{
+        this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      }, error=>{console.log(error.message)},
+      ()=>{this.uploadValue=100;
+        storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+          this.picture =url;
+          console.log(this.picture);
+        });
+      }
+      );
+    },
+  getImage(){
+    //this.picture = storageRef.ref(`${store.currentUser}/${this.slika.name}`);
+    //this.picture = `cryptotracker-fbe77.appspot.com/${store.currentUser}/1635208242972.png/`
+    this.picture = `https://firebasestorage.googleapis.com/v0/b/cryptotracker-fbe77.appspot.com/o/alenorbanic123%40gmail.com%2F1635208242972.png?alt=media&token=b14a65a8-9df7-4c0f-91b1-a0b0e8acaf84`
+    console.log(this.picture);
+  },
 }
 }
 </script>
