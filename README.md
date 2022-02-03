@@ -10,7 +10,7 @@ Mentor: [doc.dr.sc. Nikola Tanković](https://www.notion.so/Kontakt-stranica-875
 
 CryptoTracker je aplikacija zamišljena da se unutar nje vrlo jednostavno mogu pratiti cijene kriptovaluta, te količina kriptovaluta koje mi posjedujemo i njihova vrijednost iskazana u FIAT valutama. Aplikacija se sastoji od live grafikona, menua na kojem možemo izabrati razne kriptovalute, vlastitog portfolia, aktualnih vijesti te postavki. Unutar same aplikacije moći ćemo postaviti i alarme koji će služiti kao obavještenja ukoliko cijena izabrane kriptovalute pređe određeni nivo cijene.
 
-### Autori i zadužemka
+### Autori i zaduženja
 
 - **Luka Brodarič** (lbrodaric@unipu.hr) - implementacija live grafikona, aktualnih vijesti i UI komponenti
 - **Alen Orbanić** (aorbanic@unipu.hr) - implementacija firebasea (za registraciju korisnika), implementacija remindera za kretanje cijene i dodavanje portfolia

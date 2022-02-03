@@ -88,9 +88,10 @@
                   scrolling="yes"
                   allowtransparency="true"
                   frameborder="0"
-                  src="https://cryptopanic.com/widgets/news/?bg_color=FFFFFF&amp;currencies=BTC&amp;font_family=sans&amp;font_size=20&amp;header_bg_color=2C3E50&amp;header_text_color=FFFFFF&amp;link_color=0099FF&amp;news_feed=recent&amp;posts_limit=3&amp;text_color=2C3E50&amp;title=Trending%20news"
+                  src="https://cryptopanic.com/widgets/news/?bg_color=FFFFFF&amp;currencies=BTC&amp;font_family=sans&amp;font_size=20&amp;header_bg_color=FFFFFF&amp;header_text_color=FFFFFF&amp;link_color=000000&amp;news_feed=recent&amp;posts_limit=3&amp;text_color=2C3E50&amp;title=Trending%20news"
                   height="350px"
                 ></iframe>
+                <ion-icon name="reorder-three"></ion-icon>
               </li>
             </ul>
           </div>
