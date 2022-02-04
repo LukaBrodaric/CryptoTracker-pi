@@ -11,7 +11,7 @@
       <!-- Settings i edit profile -->
 
       <a href="#open-modal" class="settings-profile">
-        <img :src="picture" alt="porfile" class="profile-img" />
+        <img :src="picture" alt="profile" class="profile-img" />
         <div class="right">
           <div>
             <h2>Edit Profile</h2>
