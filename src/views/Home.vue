@@ -68,23 +68,9 @@
           </div>
 
           <div class="balance-reminder btc-reminder">
-            <a href="#open-modal" class="reminder-btn">Add reminder</a>
+            <a href="#" class="reminder-btn">Add reminder</a>
             <ion-icon name="reorder-two"></ion-icon>
           </div>
-                  <div id="open-modal" class="modal-window">
-          <div>
-            <a href="#" title="Close" class="modal-close">Close</a>
-            <br /><br />
-            <h1><b>Add a reminder</b></h1>
-            <div>
-             <h5>CryptoTracker will send you a notification email <br><b>when btc value drops below : </b></h5> <br>
-              <input type="number" v-model="btcvalue" placeholder="Enter btc price in USD" />
-             <form>
-      <input type="submit" value="Add" @click.prevent="addReminder">
-    </form>
-            </div>
-          </div>
-        </div>
 
           <!-- Ovdje idu Live vjesti -->
           <div class="currency-news-div">
@@ -124,95 +110,6 @@ body {
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-#open-modal{
-  * {
-  box-sizing: border-box;
-}
-body {
-  color: white;
-  font-family: sans-serif;
-}
-
-form {
-  margin: auto;
-  padding: 20px;
-  margin-top: 20px;
-}
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  margin-top: 0;
-}
-label, input,select {
-  width: 100%;
-  display: block;
-  font-size: 1.2em;
-}
-input, select {
-  padding: 5px;
-  margin-bottom: 20px;
-}
-input[type="submit"] {
-  width: 30%;
-  margin: auto;
-  background: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-}
-
-.modal-window {
-  text-align:center;
-  position: fixed;
-  background-color: #aaa9aa73;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s;
-  &:target {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-  }
-  & > div {
-    width: 400px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 2em;
-    background: white;
-  }
-  header {
-    font-weight: bold;
-  }
-  h1 {
-    font-size: 150%;
-    margin: 0 0 15px;
-  }
-}
-
-.modal-close {
-  color: #aaa;
-  line-height: 50px;
-  font-size: 80%;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  top: 0;
-  width: 70px;
-  text-decoration: none;
-  &:hover {
-    color: black;
-  }
 }
 
 .container,
@@ -620,9 +517,6 @@ export default {
         .catch((error) => {
           console.log("Error getting document:", error);
         });
-    },
-    addReminder(){
-    if (this.cryptos.BTC.USD < this.btcvalue) console.log("djiga");
     },
   },
 };
