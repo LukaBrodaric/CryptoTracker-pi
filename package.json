@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/core": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
+    "@vueform/toggle": "^2.0.1",
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "cryptopanic": "^1.0.1",
@@ -16,8 +17,7 @@
     "particles.js": "^2.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
-    "vue-trading-view": "^1.0.1",
-    "vue-upload-drop-images": "^1.0.7"
+    "vue-trading-view": "^1.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

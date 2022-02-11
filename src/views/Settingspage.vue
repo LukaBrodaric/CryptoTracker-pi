@@ -2,62 +2,33 @@
   <body>
     <div class="container currency-settings-div">
       <div class="stng-header">
-        <h2>Settings</h2>
+        <h2><b>Settings</b></h2>
+        <br>
         <p class="currency-settings">
           <ion-icon name="settings-outline"></ion-icon>
         </p>
       </div>
-
+<br>
       <!-- Settings i edit profile -->
 
-      <a href="#open-modal" class="settings-profile">
-        <img :src="picture" alt="porfile" class="profile-img" />
-        <div class="right">
-          <div>
-            <h2>Edit Profile</h2>
-            <div class="user">{{store.currentUser}}</div>
-          </div>
-          <h5>Click here to change your profile picture</h5>
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-        </div>
-      </a>
-        <div id="open-modal" class="modal-window">
-          <div>
-            <a href="#" title="Close" class="modal-close">Close</a>
-            <br /><br />
-            <h1><b>Select an image</b></h1>
-            <UploadImages :max="1" @change="handleImages"/>
-            <div>
-             <form>
-      <input type="submit" value="Upload" @click.prevent="onUpload">
-    </form>
-            </div>
-          </div>
+        <div class="center">
+            <div class="center"><h2>Edit Profile</h2>
+            <div class="user">{{store.currentUser}}</div></div>
+            <br><br>
         </div>
       <!-- Lista s navigacijom -->
-
       <ul class="settings-navigations">
-        <li>
-          <a
-            data-toggle="collapse"
-            href="#multiCollapseExample1"
-            role="button"
-            aria-expanded="false"
-            aria-controls="multiCollapseExample1"
-            ><div class="row">
-              <h4>Notification</h4>
-
-              <!-- <ion-icon name="card-outline"></ion-icon> -->
-
-              <div class="collapse multi-collapse" id="multiCollapseExample1">
+<li>
+         <div class="row">
+              <h4>Notifications</h4>
+              <!--  <ion-icon name="phone-portrait-outline"></ion-icon> -->
+              <div class="collapse multi-collapse" id="multiCollapseExample">
                 <div class="mt-3">
-                  CryptoTracker allows right to send you notification about any
-                  new updas to app. If you don't want to allow notifications
-                  send email at: info@cryptotracker.com
                 </div>
               </div>
             </div>
-          </a>
+            <br>
+           CryptoTracker will send you app updates if enabled &nbsp;&nbsp;&nbsp; <Toggle v-model="value" class="toggle-blue" on-label="On" off-label="Off" @click="switchUpdate()"/>
         </li>
         <li>
           <a
@@ -68,9 +39,11 @@
             aria-controls="multiCollapseExample2"
             ><div class="row">
               <h4>Reminders</h4>
-              <!--   <ion-icon name="notifications-outline"></ion-icon> -->
+              <!--  <ion-icon name="phone-portrait-outline"></ion-icon> -->
               <div class="collapse multi-collapse" id="multiCollapseExample2">
-                <div class="mt-3">Ovjde dodati remidere ako cemo imati</div>
+                <div class="mt-3">
+                 OVDJE DODAJEMO REMINDERE
+                </div>
               </div>
             </div>
           </a>
@@ -171,6 +144,11 @@
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=Nunito:wght@600&display=swap");
+
+.toggle-blue {
+  --toggle-bg-on: rgb(0, 153, 254);
+  --toggle-border-on: rgb(0, 153, 254);;
+}
 
 #open-modal{
   * {
@@ -666,29 +644,36 @@ import store from "@/store"
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import UploadImages from "vue-upload-drop-images";
-import "firebase/compat/storage";
+import Toggle from '@vueform/toggle'
+let db = firebase.firestore();
 
 export default {
 name: 'settings',
 data: function() {
   return {
     store,
-    slika: [],
-    imageData: null,
-    picture: null,
+    value: true
     }
 },
- components: {
-  UploadImages,
+components: {
+    Toggle,
   },
 created(){
 setTimeout(() => {
 console.log(store.currentUser);
-this.getImage();
 }, 1000)
 },
 methods: {
+  switchUpdate(){
+    console.log(this.value);
+    const notifikacije = this.value
+       db.collection("notifikacije korisnika").doc(store.currentUser).set({
+      app_notifs : notifikacije
+    })
+    .then((doc) => {
+      console.log("Spremljeno! ", doc)})
+      .catch((e) =>{console.error(e)});
+  },
   signout(){
           firebase
         .auth()
@@ -697,30 +682,7 @@ methods: {
           this.$router.push({ name: "Signup" });
         });
   },
-handleImages(files){
-  this.slika = files.target.files[0]
-
-},
- onUpload(){
-      const s = 3;
-      const storageRef=firebase.storage().ref(`${store.currentUser}/${this.slika.name}`).put(this.slika);
-      storageRef.on(`state_changed`,snapshot=>{
-        this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
-      }, error=>{console.log(error.message)},
-      ()=>{this.uploadValue=100;
-        storageRef.snapshot.ref.getDownloadURL().then((url)=>{
-          this.picture =url;
-          console.log(this.picture);
-        });
-      }
-      );
-    },
-  getImage(){
-    //this.picture = storageRef.ref(`${store.currentUser}/${this.slika.name}`);
-    //this.picture = `cryptotracker-fbe77.appspot.com/${store.currentUser}/1635208242972.png/`
-    this.picture = `https://firebasestorage.googleapis.com/v0/b/cryptotracker-fbe77.appspot.com/o/alenorbanic123%40gmail.com%2F1635208242972.png?alt=media&token=b14a65a8-9df7-4c0f-91b1-a0b0e8acaf84`
-    console.log(this.picture);
-  },
 }
 }
 </script>
+<style src="@vueform/toggle/themes/default.css"></style>
