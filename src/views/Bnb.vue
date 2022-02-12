@@ -69,7 +69,7 @@
 
           <div class="balance-reminder bnb-reminder">
             <a href="#" class="reminder-btn">Add reminder</a>
-            <ion-icon name="reorder-two"></ion-icon>
+            
           </div>
 
           <!-- Ovdje idu Live vjesti -->
@@ -78,7 +78,7 @@
               <h2>News</h2>
               <h3>
                 <span>All </span>
-                <ion-icon name="chevron-forward"></ion-icon>
+                
               </h3>
             </a>
             <ul class="news-list">
@@ -91,7 +91,7 @@
                   src="https://cryptopanic.com/widgets/news/?bg_color=FFFFFF&amp;currencies=BNB&amp;font_family=sans&amp;font_size=20&amp;header_bg_color=FFFFFF&amp;header_text_color=FFFFFF&amp;link_color=000000&amp;news_feed=recent&amp;posts_limit=3&amp;text_color=2C3E50&amp;"
                   height="350px"
                 ></iframe>
-                <ion-icon name="reorder-three"></ion-icon>
+                
               </li>
             </ul>
           </div>
@@ -472,40 +472,29 @@ export default {
     };
   },
   created() {
-    setTimeout(() => {
-      this.getWallet();
-    }, 1000);
+    this.interval = setInterval(() => this.getWallet(), 1200);
   },
   methods: {
     getWallet() {
-      console.log(store.currentUser);
+      
       var docRef = db.collection("wallet").doc(store.currentUser);
       docRef
         .get()
         .then((doc) => {
           if (doc.exists) {
-            console.log("Document data:", doc.data());
             this.BTC = doc.data().BTC;
             this.LTC = doc.data().LTC;
             this.ADA = doc.data().ADA;
             this.BNB = doc.data().BNB;
             this.SOL = doc.data().SOL;
             this.ETH = doc.data().ETH;
-            console.log(
-              this.BTC,
-              this.LTC,
-              this.ADA,
-              this.BNB,
-              this.SOL,
-              this.ETH
-            );
             axios
               .get(
                 "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,ADA,BNB,SOL&tsyms=USD"
               )
               .then((response) => {
                 this.cryptos = response.data;
-                console.log(this.cryptos.BTC.USD);
+                
               })
               .catch((e) => {
                 this.errors.push(e);
