@@ -71,7 +71,6 @@
             <a href="#" class="reminder-btn">Add reminder</a>
            
           </div>
-
           <!-- Ovdje idu Live vjesti -->
           <div class="currency-news-div">
             <a href="/news" class="news-header">

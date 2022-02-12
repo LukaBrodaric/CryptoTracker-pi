@@ -31,7 +31,8 @@
             <div>
              <form action="calcular.php" method="post">
       <h1>Choose a cryptocurrency</h1>
-      <select name="producto" class="form-control" id="" v-model="novaValuta">
+      <select class="form-control" id="" v-model="novaValuta">
+        <option value="" disabled selected hidden>Choose a cryptocurrency</option>
         <option value="BTC">BTC</option>
         <option value="ETH">ETH</option>
         <option value="LTC">LTC</option>

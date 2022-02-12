@@ -78,9 +78,19 @@
             <h1><b>Add a reminder</b></h1>
             <div>
               <form>
-             <h5>CryptoTracker will send you a notification email <br><b>when btc value drops below : </b></h5> <br>
-              <input type="number" placeholder="Enter btc price in USD" />
-      <input type="submit" value="Add" @click.prevent="sendEmail()" onsubmit="return false">
+                <h5>CryptoTracker will send you a notification when the value of :</h5><br>
+        <select class="form-control" id="" v-model="novaValuta" >
+        <option value="" disabled selected hidden>Choose a cryptocurrency</option>
+        <option value="BTC">BTC</option>
+        <option value="ETH">ETH</option>
+        <option value="LTC">LTC</option>
+        <option value="ADA">ADA</option>
+        <option value="BNB">BNB</option>
+        <option value="SOL">SOL</option>
+      </select>
+             <h5><b>changes for ± : </b></h5> <br>
+              <input type="number" placeholder="Enter % number (e.g. 5)" v-model="novaKolicina"/>
+      <input type="submit" value="Add" @click.prevent="setReminder()" onsubmit="return false" >
     </form>
             </div>
           </div>
@@ -563,12 +573,12 @@ export default {
       novaValuta: "",
       novaKolicina: "",
       refresh: 0,
-      BTC: 0,
-      ETH: 0,
-      LTC: 0,
-      ADA: 0,
-      BNB: 0,
-      SOL: 0,
+      pBTC: 0,
+      pETH: 0,
+      pLTC: 0,
+      pADA: 0,
+      pBNB: 0,
+      pSOL: 0,
       cryptos: [],
       errors: [],
     };
@@ -577,8 +587,7 @@ export default {
     this.interval = setInterval(() => this.getWallet(), 1200);
   },
   methods: {
-    getWallet() {
-      
+    getWallet() { 
       var docRef = db.collection("wallet").doc(store.currentUser);
       docRef
         .get()
@@ -608,6 +617,43 @@ export default {
         .catch((error) => {
           console.log("Error getting document:", error);
         });
+    },
+    setReminder(){
+      console.log("zbunjen je ne zna šta radi")
+      const kriptovaluta = this.novaValuta;
+      const postotak = this.novaKolicina;
+    switch(kriptovaluta) {
+  case "BTC":
+    this.pBTC = postotak
+    break;
+  case "ETH":
+    this.pETH = postotak
+    break;
+  case "LTC":
+    this.pLTC = postotak
+    break;
+  case "ADA":
+    this.pADA = postotak
+    break;
+  case "BNB":
+    this.pBNB = postotak
+    break;
+  case "SOL":
+    this.pSOL = postotak
+    break;
+  default:
+}
+      db.collection("reminderi").doc(store.currentUser).set({
+        BTC: this.pBTC,
+        ETH: this.pETH,
+        LTC: this.pLTC,
+        ADA: this.pADA,
+        BNB: this.pBNB,
+        SOL: this.pSOL,
+    },)
+      .then((doc) => {
+      console.log("Spremljeno! ", doc)})
+      .catch((e) =>{console.error(e)});
     },
   },
 };
