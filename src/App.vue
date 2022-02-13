@@ -78,6 +78,7 @@
   a {
     font-weight: bold;
     color: #ffffff;
+    font-family: "Lato", sans-serif;
 
     &.router-link-exact-active {
       color: #0099ff;
