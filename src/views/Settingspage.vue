@@ -31,31 +31,22 @@
            CryptoTracker will send you app updates if enabled &nbsp;&nbsp;&nbsp; <Toggle v-model="value" class="toggle-blue" on-label="On" off-label="Off" @click="switchUpdate()"/>
         </li>
         <li>
-          <div class="row">
+          <a
+            data-toggle="collapse"
+            href="#multiCollapseExample2"
+            role="button"
+            aria-expanded="false"
+            aria-controls="multiCollapseExample2"
+            ><div class="row">
               <h4>Reminders</h4>
               <!--  <ion-icon name="phone-portrait-outline"></ion-icon> -->
               <div class="collapse multi-collapse" id="multiCollapseExample2">
                 <div class="mt-3">
+                 OVDJE DODAJEMO REMINDERE
                 </div>
               </div>
-            </div><br>
-            CryptoTracker uses <b>only</b> in-app notifications
-            <a class="btn" href="#open-modal">Click here if you want to edit your reminders</a>
-            <div id="open-modal" class="modal-window">
-          <div>
-            <a href="#" title="Close" class="modal-close">Close</a>
-            <br>
-            <h4>Cryptotracker will send you <b>only</b> in-app reminders</h4>
-            <br>
-            <h5>App will notify you when cryptovalue changes for :</h5><br>
-            <p> BTC:&nbsp; <b>{{this.pBTC}}% </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" onclick="console.log('Hello world!')">Change rate</button></p>
-            <p> ETH:&nbsp; <b>{{this.pETH}}% </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" onclick="console.log('Hello world!')">Change rate</button></p>
-            <p> LTC:&nbsp; <b>{{this.pLTC}}% </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" onclick="console.log('Hello world!')">Change rate</button></p>
-            <p> ADA:&nbsp; <b>{{this.pADA}}% </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="console.log('Hello world!')">Change rate</button></p>
-            <p> BNB:&nbsp; <b>{{this.pBNB}}% </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" onclick="console.log('Hello world!')">Change rate</button></p>
-            <p> SOL:&nbsp; <b>{{this.pSOL}}% </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" onclick="console.log('Hello world!')">Change rate</button></p>
-          </div>
-          </div>
+            </div>
+          </a>
         </li>
         <li>
           <a
@@ -430,7 +421,7 @@ input[type="submit"] {
     pointer-events: auto;
   }
   & > div {
-    width: 450px;
+    width: 400px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -671,9 +662,6 @@ created(){
 setTimeout(() => {
 console.log(store.currentUser);
 }, 1000)
-setTimeout(() => {
-this.getReminder();
-}, 1500)
 },
 methods: {
   switchUpdate(){
@@ -694,26 +682,6 @@ methods: {
           this.$router.push({ name: "Signup" });
         });
   },
- getReminder(){
-  console.log(store.currentUser);
-  var docRe = db.collection("reminderi").doc(store.currentUser);
-  docRe.get().then((doc) => {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-        this.pBTC = doc.data().BTC;
-        this.pLTC = doc.data().LTC;
-        this.pADA = doc.data().ADA;
-        this.pBNB = doc.data().BNB;
-        this.pSOL = doc.data().SOL;
-        this.pETH = doc.data().ETH;
- console.log(this.pBTC, this.pLTC, this.pADA, this.pBNB, this.pSOL, this.pETH);
-} else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-  }).catch((error) => {
-      console.log("Error getting document:", error);
-  })},
 }
 }
 </script>
