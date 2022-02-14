@@ -4,36 +4,23 @@
     <div class="container currency-portfolio-div">
       <div class="div-header">
         <h2>Portfolio:</h2>
-        <p class="wallet-settings">
+        <a href="#" class="currency-setting">
           <ion-icon
-            name="wallet-outline"
+            name="settings-outline"
             role="img"
             class="md hydrated"
-            aria-label="wallet outline"
+            aria-label="settings outline"
           ></ion-icon>
-        </p>
+        </a>
       </div>
       <div class="total">
         <h3>Total:</h3>
-        <h3>
-          ${{
-            (
-              this.cryptos.BTC.USD * this.BTC +
-              this.cryptos.ETH.USD * this.ETH +
-              this.cryptos.LTC.USD * this.LTC +
-              this.cryptos.ADA.USD * this.ADA +
-              this.cryptos.BNB.USD * this.BNB +
-              this.cryptos.SOL.USD * this.SOL
-            ).toFixed(2)
-          }}
-        </h3>
+        <h3>${{(this.cryptos.BTC.USD * this.BTC + this.cryptos.ETH.USD * this.ETH + this.cryptos.LTC.USD * this.LTC + this.cryptos.ADA.USD * this.ADA + this.cryptos.BNB.USD * this.BNB +this.cryptos.SOL.USD * this.SOL).toFixed(2)}}</h3>
       </div>
       <div class="add-btn">
         <div class="container">
           <div class="interior">
-            <a class="btn" href="#open-modal"
-              >Click here to set your currencies</a
-            >
+            <a class="btn" href="#open-modal">Click here to set your currencies</a>
           </div>
         </div>
         <div id="open-modal" class="modal-window">
@@ -42,32 +29,26 @@
             <br /><br />
             <h1><b>Update your wallet</b></h1>
             <div>
-              <form action="calcular.php" method="post">
-                <h1>Choose a cryptocurrency</h1>
-                <select class="form-control" id="" v-model="novaValuta">
-                  <option value="" disabled selected hidden>
-                    Choose a cryptocurrency
-                  </option>
-                  <option value="BTC">BTC</option>
-                  <option value="ETH">ETH</option>
-                  <option value="LTC">LTC</option>
-                  <option value="ADA">ADA</option>
-                  <option value="BNB">BNB</option>
-                  <option value="SOL">SOL</option>
-                </select>
-                <label for="">Amount: </label>
-                <input
-                  type="number"
-                  class="form-control"
-                  placeholder="e.g. 1.00"
-                  v-model="novaKolicina"
-                />
-                <input
-                  type="submit"
-                  value="Update"
-                  @click.prevent="unesiValutu()"
-                />
-              </form>
+             <form action="calcular.php" method="post">
+      <h1>Choose a cryptocurrency</h1>
+      <select class="form-control" id="" v-model="novaValuta">
+        <option value="" disabled selected hidden>Choose a cryptocurrency</option>
+        <option value="BTC">BTC</option>
+        <option value="ETH">ETH</option>
+        <option value="LTC">LTC</option>
+        <option value="ADA">ADA</option>
+        <option value="BNB">BNB</option>
+        <option value="SOL">SOL</option>
+      </select>
+      <label for="">Amount: </label>
+<input
+type="number"
+class="form-control"
+placeholder="e.g. 1.00"
+v-model="novaKolicina"
+/>
+      <input type="submit" value="Update" @click.prevent="unesiValutu()">
+    </form>
             </div>
           </div>
         </div>
@@ -84,8 +65,8 @@
             </div>
             <div class="right">
               <h4>BTC</h4>
-              <h4>${{ (this.cryptos.BTC.USD * this.BTC).toFixed(2) }}</h4>
-              <p>{{ this.BTC }} btc</p>
+              <h4>${{(this.cryptos.BTC.USD * this.BTC).toFixed(2)}}</h4>
+              <p>{{this.BTC}} btc</p>
             </div>
           </a>
         </li>
@@ -100,8 +81,8 @@
             </div>
             <div class="right">
               <h4>ETH</h4>
-              <h4>${{ (this.cryptos.ETH.USD * this.ETH).toFixed(2) }}</h4>
-              <p>{{ this.ETH }} eth</p>
+              <h4>${{(this.cryptos.ETH.USD * this.ETH).toFixed(2)}}</h4>
+              <p>{{this.ETH}} eth</p>
             </div>
           </a>
         </li>
@@ -116,8 +97,8 @@
             </div>
             <div class="right">
               <h4>LTC</h4>
-              <h4>${{ (this.cryptos.LTC.USD * this.LTC).toFixed(2) }}</h4>
-              <p>{{ this.LTC }} ltc</p>
+              <h4>${{(this.cryptos.LTC.USD * this.LTC).toFixed(2)}}</h4>
+              <p>{{this.LTC}} ltc</p>
             </div>
           </a>
         </li>
@@ -132,8 +113,8 @@
             </div>
             <div class="right">
               <h4>ADA</h4>
-              <h4>${{ (this.cryptos.ADA.USD * this.ADA).toFixed(2) }}</h4>
-              <p>{{ this.ADA }} ada</p>
+              <h4>${{(this.cryptos.ADA.USD * this.ADA).toFixed(2)}}</h4>
+              <p>{{this.ADA}} ada</p>
             </div>
           </a>
         </li>
@@ -148,8 +129,8 @@
             </div>
             <div class="right">
               <h4>BNB</h4>
-              <h4>${{ (this.cryptos.BNB.USD * this.BNB).toFixed(2) }}</h4>
-              <p>{{ this.BNB }} bnb</p>
+              <h4>${{(this.cryptos.BNB.USD * this.BNB).toFixed(2)}}</h4>
+              <p>{{this.BNB}} bnb</p>
             </div>
           </a>
         </li>
@@ -164,8 +145,8 @@
             </div>
             <div class="right">
               <h4>SOL</h4>
-              <h4>${{ (this.cryptos.SOL.USD * this.SOL).toFixed(2) }}</h4>
-              <p>{{ this.SOL }} sol</p>
+              <h4>${{(this.cryptos.SOL.USD * this.SOL).toFixed(2)}}</h4>
+              <p>{{this.SOL}} sol</p>
             </div>
           </a>
         </li>
@@ -177,45 +158,42 @@
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
 
-#open-modal {
+#open-modal{
   * {
-    box-sizing: border-box;
-  }
-  body {
-    color: white;
-    font-family: "Lato", sans-serif;
-  }
+  box-sizing: border-box;
+}
+body {
+  color: white;
+  font-family: sans-serif;
+}
 
-  form {
-    margin: auto;
-    padding: 20px;
-    margin-top: 20px;
-  }
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 0;
-  }
-  label,
-  input,
-  select {
-    width: 100%;
-    display: block;
-    font-size: 1.2em;
-  }
-  input,
-  select {
-    padding: 5px;
-    margin-bottom: 20px;
-  }
-  input[type="submit"] {
-    width: 30%;
-    margin: auto;
-    background: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
+form {
+  margin: auto;
+  padding: 20px;
+  margin-top: 20px;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+label, input,select {
+  width: 100%;
+  display: block;
+  font-size: 1.2em;
+}
+input, select {
+  padding: 5px;
+  margin-bottom: 20px;
+}
+input[type="submit"] {
+  width: 30%;
+  margin: auto;
+  background: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 }
 
 .container,
@@ -267,7 +245,7 @@
 
 .currency-portfolio-div {
   position: relative;
-  margin-top: 24px;
+  margin-top: 16px;
   font-family: "Lato", sans-serif;
   width: 100%;
   background-color: #ffffff;
@@ -381,14 +359,6 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
   text-decoration: none;
-}
-
-.wallet-settings ion-icon {
-  position: relative;
-  font-size: 20px;
-  color: #4376fe;
-  font-family: "Lato", sans-serif;
-  top: 2px;
 }
 
 .currency-portfolio-div .currency-div li a .left {
@@ -509,17 +479,17 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import store from "@/store";
+import store from "@/store"
 let db = firebase.firestore();
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-  name: "portfolio",
-  data: function () {
+  name: 'portfolio',
+  data: function() {
     return {
       novaValuta: "",
       novaKolicina: "",
-      refresh: 0,
+      refresh : 0,
       BTC: 0,
       ETH: 0,
       LTC: 0,
@@ -530,101 +500,85 @@ export default {
       errors: [],
     };
   },
-  created() {
-    setTimeout(() => {
-      this.getWallet();
-    }, 1000);
-  },
-  methods: {
-    getWallet() {
-      console.log(store.currentUser);
-      var docRef = db.collection("wallet").doc(store.currentUser);
-      docRef
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
-            console.log("Document data:", doc.data());
-            this.BTC = doc.data().BTC;
-            this.LTC = doc.data().LTC;
-            this.ADA = doc.data().ADA;
-            this.BNB = doc.data().BNB;
-            this.SOL = doc.data().SOL;
-            this.ETH = doc.data().ETH;
-            console.log(
-              this.BTC,
-              this.LTC,
-              this.ADA,
-              this.BNB,
-              this.SOL,
-              this.ETH
-            );
-            axios
-              .get(
-                "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,ADA,BNB,SOL&tsyms=USD"
-              )
-              .then((response) => {
-                this.cryptos = response.data;
-                console.log(this.cryptos.BTC.USD);
-              })
-              .catch((e) => {
-                this.errors.push(e);
-              });
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
-        })
-        .catch((error) => {
-          console.log("Error getting document:", error);
-        });
-    },
-    unesiValutu() {
-      const valuta = this.novaValuta;
-      const kolicina = this.novaKolicina;
-      db.collection("povijest uplata")
-        .add({
-          naziv: valuta,
-          vrijednost: kolicina,
-          korisnik: store.currentUser,
-          vrijeme: new Date(Date.now() + 3600000).toISOString(),
-        })
-        .then((doc) => {
-          console.log("Spremljeno! ", doc), alert("Currency updated!");
-          switch (valuta) {
-            case "BTC":
-              this.BTC = kolicina;
-              break;
-            case "ETH":
-              this.ETH = kolicina;
-              break;
-            case "LTC":
-              this.LTC = kolicina;
-              break;
-            case "ADA":
-              this.ADA = kolicina;
-              break;
-            case "BNB":
-              this.BNB = kolicina;
-              break;
-            case "SOL":
-              this.SOL = kolicina;
-              break;
-            default:
-          }
-          db.collection("wallet").doc(store.currentUser).set({
-            BTC: this.BTC,
-            ETH: this.ETH,
-            LTC: this.LTC,
-            ADA: this.ADA,
-            BNB: this.BNB,
-            SOL: this.SOL,
-          });
-          window.location.reload();
-        })
-        .catch((e) => {
-          console.error(e);
-        });
-    },
-  },
-};
+created(){
+setTimeout(() => {
+this.getWallet();
+}, 1000)
+},
+methods: {
+  getWallet(){
+  console.log(store.currentUser);
+  var docRef = db.collection("wallet").doc(store.currentUser);
+  docRef.get().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        this.BTC = doc.data().BTC;
+        this.LTC = doc.data().LTC;
+        this.ADA = doc.data().ADA;
+        this.BNB = doc.data().BNB;
+        this.SOL = doc.data().SOL;
+        this.ETH = doc.data().ETH;
+ console.log(this.BTC, this.LTC, this.ADA, this.BNB, this.SOL, this.ETH);
+axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,ADA,BNB,SOL&tsyms=USD')
+.then(response => {
+  this.cryptos=response.data
+  console.log(this.cryptos.BTC.USD);
+})
+.catch(e => {
+this.errors.push(e)
+})
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+  }).catch((error) => {
+      console.log("Error getting document:", error);
+  })},
+  unesiValutu(){
+    const valuta = this.novaValuta;
+    const kolicina = this.novaKolicina;
+    db.collection("povijest uplata").add({
+      naziv: valuta,
+      vrijednost: kolicina,
+      korisnik: store.currentUser,
+      vrijeme: new Date(Date.now()+3600000).toISOString(),
+    })
+    .then((doc) => {
+      console.log("Spremljeno! ", doc),
+      alert('Currency updated!');
+         switch(valuta) {
+  case "BTC":
+    this.BTC = kolicina
+    break;
+  case "ETH":
+    this.ETH = kolicina
+    break;
+  case "LTC":
+    this.LTC = kolicina
+    break;
+  case "ADA":
+    this.ADA = kolicina
+    break;
+  case "BNB":
+    this.BNB = kolicina
+    break;
+  case "SOL":
+    this.SOL = kolicina
+    break;
+  default:
+}
+      db.collection("wallet").doc(store.currentUser).set({
+        BTC: this.BTC,
+        ETH: this.ETH,
+        LTC: this.LTC,
+        ADA: this.ADA,
+        BNB: this.BNB,
+        SOL: this.SOL,
+      });
+      window.location.reload();
+      })
+    .catch((e) =>{console.error(e)});
+  }
+}
+}
 </script>

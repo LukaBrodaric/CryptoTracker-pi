@@ -2,18 +2,18 @@
   <div class="container">
     <div class="row">
       <div class="col"></div>
-      <div class="col-12 news-div">
+      <div class="col-12 mt-5 news-div">
         <!-- Implementacija live vijesti -->
         <div class="div-header">
           <h2>News:</h2>
-          <p class="news-settings">
+          <a href="#" class="newspaper-setting">
             <ion-icon
               name="newspaper-outline"
               role="img"
               class="md hydrated"
-              aria-label="newspaper outline"
+              aria-label="settings outline"
             ></ion-icon>
-          </p>
+          </a>
         </div>
         <iframe
           width="100%"
@@ -81,7 +81,7 @@
 
 .news-div {
   position: relative;
-  margin-top: 24px;
+  margin-top: 16px;
   font-family: "Lato", sans-serif;
   width: 100%;
   background-color: #ffffff;
@@ -104,14 +104,6 @@
   font-size: 28px;
   font-weight: 700;
   color: #17171a;
-}
-
-.news-settings ion-icon {
-  position: relative;
-  font-size: 20px;
-  color: #4376fe;
-  font-family: "Lato", sans-serif;
-  top: 2px;
 }
 
 .div-header .newspaper-setting {
