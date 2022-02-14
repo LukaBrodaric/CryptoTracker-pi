@@ -560,6 +560,7 @@ import "firebase/compat/firestore";
 import store from "@/store";
 let db = firebase.firestore();
 import axios from "axios";
+
 export default {
   name: "btc",
   props: {
@@ -585,6 +586,13 @@ export default {
   },
   created() {
     this.interval = setInterval(() => this.getWallet(), 1200);
+    setTimeout(() => {
+this.getReminder();
+}, 2000)
+    setTimeout(() => {
+store.pocetnaVrijednost = this.cryptos.BTC.USD ;
+console.log(store.pocetnaVrijednost)
+}, 5000)
   },
   methods: {
     getWallet() { 
@@ -617,9 +625,13 @@ export default {
         .catch((error) => {
           console.log("Error getting document:", error);
         });
+      if (this.pBTC > 0){                                                                         // Ovdje ubaciti reminder api
+      if(store.pocetnaVrijednost - this.cryptos.BTC.USD > (store.pocetnaVrijednost/100*this.pBTC)) {console.log("Cijena je skocila");}
+      if(store.pocetnaVrijednost - this.cryptos.BTC.USD < (store.pocetnaVrijednost/100*this.pBTC)) {console.log("Cijena je pala");}
+      }
     },
+
     setReminder(){
-      console.log("zbunjen je ne zna šta radi")
       const kriptovaluta = this.novaValuta;
       const postotak = this.novaKolicina;
     switch(kriptovaluta) {
@@ -655,6 +667,26 @@ export default {
       console.log("Spremljeno! ", doc)})
       .catch((e) =>{console.error(e)});
     },
+  getReminder(){
+  console.log(store.currentUser);
+  var docRe = db.collection("reminderi").doc(store.currentUser);
+  docRe.get().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        this.pBTC = doc.data().BTC;
+        this.pLTC = doc.data().LTC;
+        this.pADA = doc.data().ADA;
+        this.pBNB = doc.data().BNB;
+        this.pSOL = doc.data().SOL;
+        this.pETH = doc.data().ETH;
+ console.log(this.pBTC, this.pLTC, this.pADA, this.pBNB, this.pSOL, this.pETH);
+} else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+  }).catch((error) => {
+      console.log("Error getting document:", error);
+  })},
   },
 };
 </script>

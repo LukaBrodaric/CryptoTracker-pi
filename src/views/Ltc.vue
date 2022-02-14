@@ -68,9 +68,33 @@
           </div>
 
           <div class="balance-reminder ltc-reminder">
-            <a href="#" class="reminder-btn">Add reminder</a>
+            <a href="#open-modal" class="reminder-btn">Add reminder</a>
             
           </div>
+                  <div id="open-modal" class="modal-window">
+          <div>
+            <a href="#" title="Close" class="modal-close">Close</a>
+            <br /><br />
+            <h1><b>Add a reminder</b></h1>
+            <div>
+              <form>
+                <h5>CryptoTracker will send you a notification when the value of :</h5><br>
+        <select class="form-control" id="" v-model="novaValuta" >
+        <option value="" disabled selected hidden>Choose a cryptocurrency</option>
+        <option value="BTC">BTC</option>
+        <option value="ETH">ETH</option>
+        <option value="LTC">LTC</option>
+        <option value="ADA">ADA</option>
+        <option value="BNB">BNB</option>
+        <option value="SOL">SOL</option>
+      </select>
+             <h5><b>changes for ± : </b></h5> <br>
+              <input type="number" placeholder="Enter % number (e.g. 5)" v-model="novaKolicina"/>
+      <input type="submit" value="Add" @click.prevent="setReminder()" onsubmit="return false" >
+    </form>
+            </div>
+          </div>
+        </div>
 
           <!-- Ovdje idu Live vjesti -->
           <div class="currency-news-div">
@@ -110,6 +134,95 @@ body {
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+#open-modal{
+  * {
+  box-sizing: border-box;
+}
+body {
+  color: white;
+  font-family: sans-serif;
+}
+
+form {
+  margin: auto;
+  padding: 20px;
+  margin-top: 20px;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+label, input,select {
+  width: 100%;
+  display: block;
+  font-size: 1.2em;
+}
+input, select {
+  padding: 5px;
+  margin-bottom: 20px;
+}
+input[type="submit"] {
+  width: 30%;
+  margin: auto;
+  background: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+}
+
+.modal-window {
+  text-align:center;
+  position: fixed;
+  background-color: #aaa9aa73;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  &:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  & > div {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background: white;
+  }
+  header {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+  &:hover {
+    color: black;
+  }
 }
 
 .container,
@@ -461,18 +574,25 @@ export default {
       novaValuta: "",
       novaKolicina: "",
       refresh: 0,
-      BTC: 0,
-      ETH: 0,
-      LTC: 0,
-      ADA: 0,
-      BNB: 0,
-      SOL: 0,
+      pBTC: 0,
+      pETH: 0,
+      pLTC: 0,
+      pADA: 0,
+      pBNB: 0,
+      pSOL: 0,
       cryptos: [],
       errors: [],
     };
   },
   created() {
     this.interval = setInterval(() => this.getWallet(), 1200);
+        setTimeout(() => {
+this.getReminder();
+}, 2000)
+setTimeout(() => {
+store.pocetnaVrijednost = this.cryptos.LTC.USD ;
+console.log(store.pocetnaVrijednost)
+}, 5000)
   },
   methods: {
     getWallet() {
@@ -506,7 +626,67 @@ export default {
         .catch((error) => {
           console.log("Error getting document:", error);
         });
+      if (this.pLTC > 0){                                                                         // Ovdje ubaciti reminder api
+      if(store.pocetnaVrijednost - this.cryptos.LTC.USD > (store.pocetnaVrijednost/100*this.pLTC)) {console.log("Cijena je skocila");}
+      if(store.pocetnaVrijednost - this.cryptos.LTC.USD < (store.pocetnaVrijednost/100*this.pLTC)) {console.log("Cijena je pala");}
+      }
     },
+    setReminder(){
+      const kriptovaluta = this.novaValuta;
+      const postotak = this.novaKolicina;
+    switch(kriptovaluta) {
+  case "BTC":
+    this.pBTC = postotak
+    break;
+  case "ETH":
+    this.pETH = postotak
+    break;
+  case "LTC":
+    this.pLTC = postotak
+    break;
+  case "ADA":
+    this.pADA = postotak
+    break;
+  case "BNB":
+    this.pBNB = postotak
+    break;
+  case "SOL":
+    this.pSOL = postotak
+    break;
+  default:
+}
+      db.collection("reminderi").doc(store.currentUser).set({
+        BTC: this.pBTC,
+        ETH: this.pETH,
+        LTC: this.pLTC,
+        ADA: this.pADA,
+        BNB: this.pBNB,
+        SOL: this.pSOL,
+    },)
+      .then((doc) => {
+      console.log("Spremljeno! ", doc)})
+      .catch((e) =>{console.error(e)});
+    },
+getReminder(){
+  console.log(store.currentUser);
+  var docRe = db.collection("reminderi").doc(store.currentUser);
+  docRe.get().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        this.pBTC = doc.data().BTC;
+        this.pLTC = doc.data().LTC;
+        this.pADA = doc.data().ADA;
+        this.pBNB = doc.data().BNB;
+        this.pSOL = doc.data().SOL;
+        this.pETH = doc.data().ETH;
+ console.log(this.pBTC, this.pLTC, this.pADA, this.pBNB, this.pSOL, this.pETH);
+} else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+  }).catch((error) => {
+      console.log("Error getting document:", error);
+  })},
   },
 };
 </script>
