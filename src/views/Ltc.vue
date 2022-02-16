@@ -1,8 +1,23 @@
 <template>
+
   <div class="home">
     <!--  <h1>Cryptotracker</h1> -->
 
     <body>
+      <div v-if="alert==1">
+        <div class="col-sm-12">
+        <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+          <button type="button" class="close font__size-18" data-dismiss="alert">
+									<span aria-hidden="true">
+										<i class="fa fa-times blue-cross"></i>
+									</span>
+									<span class="sr-only">Close</span>
+								</button>
+          <i class="start-icon  fa fa-info-circle faa-shake animated"></i>
+          <strong class="font__weight-semibold">Heads up!</strong>  &nbsp; This is a reminder to let you know that one or more of your reminders have been triggered, please check the current crypto prices and your portfolio.
+        </div>
+      </div>
+      </div>
       <section class="container currency-div">
         <!-- Izbronik valuta -->
         <ul class="currency-nav">
@@ -571,6 +586,7 @@ export default {
   },
   data: function () {
     return {
+       alert: 0,
       novaValuta: "",
       novaKolicina: "",
       refresh: 0,
@@ -589,12 +605,12 @@ export default {
         setTimeout(() => {
 this.getReminder();
 }, 2000)
-setTimeout(() => {
-store.pocetnaVrijednost = this.cryptos.LTC.USD ;
-console.log(store.pocetnaVrijednost)
-}, 5000)
   },
   methods: {
+    playSound () {
+        var audio = new Audio('http://docs.google.com/uc?export=open&id=1r9E4Lj17lLdRPwY_d6xSsu3T9V8w66v2');
+        audio.play();
+    },
     getWallet() {
       
       var docRef = db.collection("wallet").doc(store.currentUser);
@@ -626,9 +642,29 @@ console.log(store.pocetnaVrijednost)
         .catch((error) => {
           console.log("Error getting document:", error);
         });
+      if (this.pBTC > 0){                                                                         // Ovdje ubaciti reminder api
+      if(store.pocetnaVrijednostBTC - this.cryptos.BTC.USD > (store.pocetnaVrijednostBTC/100*this.pBTC)) {  this.alert = 1; this.playSound();}
+      if(store.pocetnaVrijednostBTC - this.cryptos.BTC.USD < (store.pocetnaVrijednostBTC/100*this.pBTC)) {  this.alert = 1; this.playSound();}
+      }
+       if (this.pADA > 0){                                                                         // Ovdje ubaciti reminder api
+      if(store.pocetnaVrijednostADA - this.cryptos.ADA.USD > (store.pocetnaVrijednostADA/100*this.pADA)) {  this.alert = 1; this.playSound();}
+      if(store.pocetnaVrijednostADA - this.cryptos.ADA.USD < (store.pocetnaVrijednostADA/100*this.pADA)) {  this.alert = 1; this.playSound();}
+      }
+      if (this.pSOL > 0){                                                                         // Ovdje ubaciti reminder api
+      if(store.pocetnaVrijednostSOL - this.cryptos.SOL.USD > (store.pocetnaVrijednostSOL/100*this.pSOL)) {  this.alert = 1; this.playSound();}
+      if(store.pocetnaVrijednostSOL - this.cryptos.SOL.USD < (store.pocetnaVrijednostSOL/100*this.pSOL)) {  this.alert = 1; this.playSound();}
+      }
+      if (this.pBNB > 0){                                                                         // Ovdje ubaciti reminder api
+      if(store.pocetnaVrijednostBNB - this.cryptos.BNB.USD > (store.pocetnaVrijednostBNB/100*this.pBNB)) {  this.alert = 1; this.playSound();}
+      if(store.pocetnaVrijednostBNB - this.cryptos.BNB.USD < (store.pocetnaVrijednostBNB/100*this.pBNB)) {  this.alert = 1; this.playSound();}
+      }
+              if (this.pETH > 0){                                                                         // Ovdje ubaciti reminder api
+      if(store.pocetnaVrijednostETH - this.cryptos.ETH.USD > (store.pocetnaVrijednostETH/100*this.pETH)) {  this.alert = 1; this.playSound();}
+      if(store.pocetnaVrijednostETH - this.cryptos.ETH.USD < (store.pocetnaVrijednostETH/100*this.pETH)) {  this.alert = 1; this.playSound();}
+      }
       if (this.pLTC > 0){                                                                         // Ovdje ubaciti reminder api
-      if(store.pocetnaVrijednost - this.cryptos.LTC.USD > (store.pocetnaVrijednost/100*this.pLTC)) {console.log("Cijena je skocila");}
-      if(store.pocetnaVrijednost - this.cryptos.LTC.USD < (store.pocetnaVrijednost/100*this.pLTC)) {console.log("Cijena je pala");}
+      if(store.pocetnaVrijednostLTC - this.cryptos.LTC.USD > (store.pocetnaVrijednostLTC/100*this.pLTC)) {  this.alert = 1; this.playSound();}
+      if(store.pocetnaVrijednostLTC - this.cryptos.LTC.USD < (store.pocetnaVrijednostLTC/100*this.pLTC)) {  this.alert = 1; this.playSound();}
       }
     },
     setReminder(){
@@ -668,24 +704,24 @@ console.log(store.pocetnaVrijednost)
       .catch((e) =>{console.error(e)});
     },
 getReminder(){
-  console.log(store.currentUser);
+   
   var docRe = db.collection("reminderi").doc(store.currentUser);
   docRe.get().then((doc) => {
       if (doc.exists) {
-        console.log("Document data:", doc.data());
+         
         this.pBTC = doc.data().BTC;
         this.pLTC = doc.data().LTC;
         this.pADA = doc.data().ADA;
         this.pBNB = doc.data().BNB;
         this.pSOL = doc.data().SOL;
         this.pETH = doc.data().ETH;
- console.log(this.pBTC, this.pLTC, this.pADA, this.pBNB, this.pSOL, this.pETH);
+  
 } else {
         // doc.data() will be undefined in this case
-        console.log("No such document!");
+         ("No such document!");
       }
   }).catch((error) => {
-      console.log("Error getting document:", error);
+       ("Error getting document:", error);
   })},
   },
 };
