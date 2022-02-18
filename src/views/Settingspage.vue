@@ -150,7 +150,7 @@
               <!--  <ion-icon name="phone-portrait-outline"></ion-icon> -->
               <div class="collapse multi-collapse" id="multiCollapseExample3">
                 <div class="mt-3">
-                  CryptoTracker app is running on newest Version 2.0.6 and will
+                  CryptoTracker app is running on newest Version 1.0.1 and will
                   be constantly updated, and you as a user will be reminded on
                   email about any new version or updates.
                 </div>

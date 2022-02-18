@@ -2,19 +2,30 @@
   <div class="home">
     <!--  <h1>Cryptotracker</h1> -->
     <body>
-      <div v-if="alert==1">
+      <div v-if="alert == 1">
         <div class="col-sm-12">
-        <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-          <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times blue-cross"></i>
-									</span>
-									<span class="sr-only">Close</span>
-								</button>
-          <i class="start-icon  fa fa-info-circle faa-shake animated"></i>
-          <strong class="font__weight-semibold">Heads up!</strong> &nbsp; This is a reminder to let you know that one or more of your reminders have been triggered, please check the current crypto prices and your portfolio.
+          <div
+            class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+            role="alert"
+            data-brk-library="component__alert"
+          >
+            <button
+              type="button"
+              class="close font__size-18"
+              data-dismiss="alert"
+            >
+              <span aria-hidden="true">
+                <i class="fa fa-times blue-cross"></i>
+              </span>
+              <span class="sr-only">Close</span>
+            </button>
+            <i class="start-icon fa fa-info-circle faa-shake animated"></i>
+            <strong class="font__weight-semibold">Heads up!</strong> &nbsp; This
+            is a reminder to let you know that one or more of your reminders
+            have been triggered, please check the current crypto prices and your
+            portfolio.
+          </div>
         </div>
-      </div>
       </div>
       <section class="container currency-div">
         <!-- Izbronik valuta -->
@@ -82,40 +93,59 @@
 
           <div class="balance-reminder btc-reminder">
             <a href="#open-modal" class="reminder-btn">Add reminder</a>
-            
           </div>
-                  <div id="open-modal" class="modal-window">
-          <div>
-            <a href="#" title="Close" class="modal-close" @click="add = !add">Close</a>
-            <br />
-            <div style="color:green;" class="fade-in-text" v-if="add==1"><b>Reminders updated!</b></div><br>
-            <h1><b>Add a reminder</b></h1>
+          <div id="open-modal" class="modal-window">
             <div>
-              <form>
-                <h5>CryptoTracker will send you a notification when the value of :</h5><br>
-        <select class="form-control" id="" v-model="novaValuta" >
-        <option value="" disabled selected hidden>Choose a cryptocurrency</option>
-        <option value="BTC">BTC</option>
-        <option value="ETH">ETH</option>
-        <option value="LTC">LTC</option>
-        <option value="ADA">ADA</option>
-        <option value="BNB">BNB</option>
-        <option value="SOL">SOL</option>
-      </select>
-             <h5><b>changes for ± : </b></h5> <br>
-              <input type="number" placeholder="Enter % number (e.g. 5)" v-model="novaKolicina"/>
-      <input type="submit" value="Add" @click.prevent="setReminder()" onsubmit="return false" >
-    </form>
+              <a href="#" title="Close" class="modal-close" @click="add = !add"
+                >Close</a
+              >
+              <br />
+              <div style="color: green" class="fade-in-text" v-if="add == 1">
+                <b>Reminders updated!</b>
+              </div>
+              <br />
+              <h1><b>Add a reminder</b></h1>
+              <div>
+                <form>
+                  <h5>
+                    CryptoTracker will send you a notification when the value of
+                    :
+                  </h5>
+                  <br />
+                  <select class="form-control" id="" v-model="novaValuta">
+                    <option value="" disabled selected hidden>
+                      Choose a cryptocurrency
+                    </option>
+                    <option value="BTC">BTC</option>
+                    <option value="ETH">ETH</option>
+                    <option value="LTC">LTC</option>
+                    <option value="ADA">ADA</option>
+                    <option value="BNB">BNB</option>
+                    <option value="SOL">SOL</option>
+                  </select>
+                  <h5><b>changes for ± : </b></h5>
+                  <br />
+                  <input
+                    type="number"
+                    placeholder="Enter % number (e.g. 5)"
+                    v-model="novaKolicina"
+                  />
+                  <input
+                    type="submit"
+                    value="Add"
+                    @click.prevent="setReminder()"
+                    onsubmit="return false"
+                  />
+                </form>
+              </div>
             </div>
           </div>
-        </div>
           <!-- Ovdje idu Live vjesti -->
           <div class="currency-news-div">
             <a href="/news" class="news-header">
               <h2>News</h2>
               <h3>
                 <span>All </span>
-                
               </h3>
             </a>
             <ul class="news-list">
@@ -128,7 +158,6 @@
                   src="https://cryptopanic.com/widgets/news/?bg_color=FFFFFF&amp;currencies=BTC&amp;font_family=sans&amp;font_size=20&amp;header_bg_color=FFFFFF&amp;header_text_color=FFFFFF&amp;link_color=000000&amp;news_feed=recent&amp;posts_limit=3&amp;text_color=2C3E50&amp;title=Trending%20news"
                   height="350px"
                 ></iframe>
-                
               </li>
             </ul>
           </div>
@@ -162,70 +191,93 @@ body {
 }
 
 @keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-moz-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-o-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-ms-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-#open-modal{
+#open-modal {
   * {
-  box-sizing: border-box;
-}
-body {
-  color: white;
-  font-family: sans-serif;
-}
+    box-sizing: border-box;
+  }
+  body {
+    color: white;
+    font-family: sans-serif;
+  }
 
-form {
-  margin: auto;
-  padding: 20px;
-  margin-top: 20px;
-}
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  margin-top: 0;
-}
-label, input,select {
-  width: 100%;
-  display: block;
-  font-size: 1.2em;
-}
-input, select {
-  padding: 5px;
-  margin-bottom: 20px;
-}
-input[type="submit"] {
-  width: 30%;
-  margin: auto;
-  background: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
+  form {
+    margin: auto;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+  label,
+  input,
+  select {
+    width: 100%;
+    display: block;
+    font-size: 1.2em;
+  }
+  input,
+  select {
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+  input[type="submit"] {
+    width: 30%;
+    margin: auto;
+    background: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
 }
 
 .modal-window {
-  text-align:center;
+  text-align: center;
   position: fixed;
   background-color: #aaa9aa73;
   top: 0;
@@ -639,24 +691,26 @@ export default {
   created() {
     this.interval = setInterval(() => this.getWallet(), 1200);
     setTimeout(() => {
-this.getReminder();
-}, 2000)
+      this.getReminder();
+    }, 2000);
     setTimeout(() => {
-store.pocetnaVrijednostBTC = this.cryptos.BTC.USD ;
-store.pocetnaVrijednostETH = this.cryptos.ETH.USD ;
-store.pocetnaVrijednostBNB = this.cryptos.BNB.USD ;
-store.pocetnaVrijednostSOL = this.cryptos.SOL.USD ;
-store.pocetnaVrijednostLTC = this.cryptos.LTC.USD ;
-store.pocetnaVrijednostADA = this.cryptos.ADA.USD ;
-}, 5000)
+      store.pocetnaVrijednostBTC = this.cryptos.BTC.USD;
+      store.pocetnaVrijednostETH = this.cryptos.ETH.USD;
+      store.pocetnaVrijednostBNB = this.cryptos.BNB.USD;
+      store.pocetnaVrijednostSOL = this.cryptos.SOL.USD;
+      store.pocetnaVrijednostLTC = this.cryptos.LTC.USD;
+      store.pocetnaVrijednostADA = this.cryptos.ADA.USD;
+    }, 5000);
   },
   methods: {
     // @click.prevent="playSound('http://docs.google.com/uc?export=open&id=1r9E4Lj17lLdRPwY_d6xSsu3T9V8w66v2')"
-    playSound () {
-        var audio = new Audio('http://docs.google.com/uc?export=open&id=1r9E4Lj17lLdRPwY_d6xSsu3T9V8w66v2');
-        audio.play();
+    playSound() {
+      var audio = new Audio(
+        "http://docs.google.com/uc?export=open&id=1r9E4Lj17lLdRPwY_d6xSsu3T9V8w66v2"
+      );
+      audio.play();
     },
-    getWallet() { 
+    getWallet() {
       var docRef = db.collection("wallet").doc(store.currentUser);
       docRef
         .get()
@@ -674,7 +728,6 @@ store.pocetnaVrijednostADA = this.cryptos.ADA.USD ;
               )
               .then((response) => {
                 this.cryptos = response.data;
-                
               })
               .catch((e) => {
                 this.errors.push(e);
@@ -686,89 +739,179 @@ store.pocetnaVrijednostADA = this.cryptos.ADA.USD ;
         .catch((error) => {
           console.log("Error getting document:", error);
         });
-      if (this.pBTC > 0){                                                                         
-      if(this.cryptos.BTC.USD > (store.pocetnaVrijednostBTC + store.pocetnaVrijednostBTC/100*this.pBTC)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.BTC.USD < (store.pocetnaVrijednostBTC - store.pocetnaVrijednostBTC/100*this.pBTC)) { this.alert = 1; this.playSound();}
+      if (this.pBTC > 0) {
+        if (
+          this.cryptos.BTC.USD >
+          store.pocetnaVrijednostBTC +
+            (store.pocetnaVrijednostBTC / 100) * this.pBTC
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.BTC.USD <
+          store.pocetnaVrijednostBTC -
+            (store.pocetnaVrijednostBTC / 100) * this.pBTC
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
-       if (this.pETH > 0){                                                                         
-      if(this.cryptos.ETH.USD > (store.pocetnaVrijednostETH + store.pocetnaVrijednostETH/100*this.pETH)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.ETH.USD < (store.pocetnaVrijednostETH - store.pocetnaVrijednostETH/100*this.pETH)) { this.alert = 1; this.playSound();}
+      if (this.pETH > 0) {
+        if (
+          this.cryptos.ETH.USD >
+          store.pocetnaVrijednostETH +
+            (store.pocetnaVrijednostETH / 100) * this.pETH
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.ETH.USD <
+          store.pocetnaVrijednostETH -
+            (store.pocetnaVrijednostETH / 100) * this.pETH
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
-      if (this.pADA > 0){                                                                         
-      if(this.cryptos.ADA.USD > (store.pocetnaVrijednostADA + store.pocetnaVrijednostADA/100*this.pADA)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.ADA.USD < (store.pocetnaVrijednostADA - store.pocetnaVrijednostADA/100*this.pADA)) { this.alert = 1; this.playSound();}
+      if (this.pADA > 0) {
+        if (
+          this.cryptos.ADA.USD >
+          store.pocetnaVrijednostADA +
+            (store.pocetnaVrijednostADA / 100) * this.pADA
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.ADA.USD <
+          store.pocetnaVrijednostADA -
+            (store.pocetnaVrijednostADA / 100) * this.pADA
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
-      if (this.pBNB > 0){                                                                         
-      if(this.cryptos.BNB.USD > (store.pocetnaVrijednostBNB + store.pocetnaVrijednostBNB/100*this.pBNB)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.BNB.USD < (store.pocetnaVrijednostBNB - store.pocetnaVrijednostBNB/100*this.pBNB)) { this.alert = 1; this.playSound();}
+      if (this.pBNB > 0) {
+        if (
+          this.cryptos.BNB.USD >
+          store.pocetnaVrijednostBNB +
+            (store.pocetnaVrijednostBNB / 100) * this.pBNB
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.BNB.USD <
+          store.pocetnaVrijednostBNB -
+            (store.pocetnaVrijednostBNB / 100) * this.pBNB
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
-      if (this.pSOL > 0){                                                                         
-      if(this.cryptos.SOL.USD > (store.pocetnaVrijednostSOL + store.pocetnaVrijednostSOL/100*this.pSOL)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.SOL.USD < (store.pocetnaVrijednostSOL - store.pocetnaVrijednostSOL/100*this.pSOL)) { this.alert = 1; this.playSound();}
+      if (this.pSOL > 0) {
+        if (
+          this.cryptos.SOL.USD >
+          store.pocetnaVrijednostSOL +
+            (store.pocetnaVrijednostSOL / 100) * this.pSOL
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.SOL.USD <
+          store.pocetnaVrijednostSOL -
+            (store.pocetnaVrijednostSOL / 100) * this.pSOL
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
-      if (this.pLTC > 0){                                                                         
-      if(this.cryptos.LTC.USD > (store.pocetnaVrijednostLTC + store.pocetnaVrijednostLTC/100*this.pLTC)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.LTC.USD < (store.pocetnaVrijednostLTC - store.pocetnaVrijednostLTC/100*this.pLTC)) { this.alert = 1; this.playSound();}
+      if (this.pLTC > 0) {
+        if (
+          this.cryptos.LTC.USD >
+          store.pocetnaVrijednostLTC +
+            (store.pocetnaVrijednostLTC / 100) * this.pLTC
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.LTC.USD <
+          store.pocetnaVrijednostLTC -
+            (store.pocetnaVrijednostLTC / 100) * this.pLTC
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
     },
 
-    setReminder(){
-      this.add=1;
+    setReminder() {
+      this.add = 1;
       const kriptovaluta = this.novaValuta;
       const postotak = this.novaKolicina;
-    switch(kriptovaluta) {
-  case "BTC":
-    this.pBTC = postotak
-    break;
-  case "ETH":
-    this.pETH = postotak
-    break;
-  case "LTC":
-    this.pLTC = postotak
-    break;
-  case "ADA":
-    this.pADA = postotak
-    break;
-  case "BNB":
-    this.pBNB = postotak
-    break;
-  case "SOL":
-    this.pSOL = postotak
-    break;
-  default:
-}
-      db.collection("reminderi").doc(store.currentUser).set({
-        BTC: this.pBTC,
-        ETH: this.pETH,
-        LTC: this.pLTC,
-        ADA: this.pADA,
-        BNB: this.pBNB,
-        SOL: this.pSOL,
-    },)
-      .then((doc) => {
-      console.log("Spremljeno! ", doc)})
-      .catch((e) =>{console.error(e)});
-    },
-  getReminder(){
-   
-  var docRe = db.collection("reminderi").doc(store.currentUser);
-  docRe.get().then((doc) => {
-      if (doc.exists) {
-         
-        this.pBTC = doc.data().BTC;
-        this.pLTC = doc.data().LTC;
-        this.pADA = doc.data().ADA;
-        this.pBNB = doc.data().BNB;
-        this.pSOL = doc.data().SOL;
-        this.pETH = doc.data().ETH;
-  
-} else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
+      switch (kriptovaluta) {
+        case "BTC":
+          this.pBTC = postotak;
+          break;
+        case "ETH":
+          this.pETH = postotak;
+          break;
+        case "LTC":
+          this.pLTC = postotak;
+          break;
+        case "ADA":
+          this.pADA = postotak;
+          break;
+        case "BNB":
+          this.pBNB = postotak;
+          break;
+        case "SOL":
+          this.pSOL = postotak;
+          break;
+        default:
       }
-  }).catch((error) => {
-      console.log("Error getting document:", error);
-  })},
+      db.collection("reminderi")
+        .doc(store.currentUser)
+        .set({
+          BTC: this.pBTC,
+          ETH: this.pETH,
+          LTC: this.pLTC,
+          ADA: this.pADA,
+          BNB: this.pBNB,
+          SOL: this.pSOL,
+        })
+        .then((doc) => {
+          console.log("Spremljeno! ", doc);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    },
+    getReminder() {
+      var docRe = db.collection("reminderi").doc(store.currentUser);
+      docRe
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            this.pBTC = doc.data().BTC;
+            this.pLTC = doc.data().LTC;
+            this.pADA = doc.data().ADA;
+            this.pBNB = doc.data().BNB;
+            this.pSOL = doc.data().SOL;
+            this.pETH = doc.data().ETH;
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    },
   },
 };
 </script>
