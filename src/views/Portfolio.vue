@@ -1,18 +1,24 @@
 <template>
-<div v-if="alert==1">
-        <div class="col-sm-12">
-        <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-          <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times blue-cross"></i>
-									</span>
-									<span class="sr-only">Close</span>
-								</button>
-          <i class="start-icon  fa fa-info-circle faa-shake animated"></i>
-          <strong class="font__weight-semibold">Heads up!</strong> &nbsp; This is a reminder to let you know that one or more of your reminders have been triggered, please check the current crypto prices and your portfolio.
-        </div>
+  <div v-if="alert == 1">
+    <div class="col-sm-12">
+      <div
+        class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+        role="alert"
+        data-brk-library="component__alert"
+      >
+        <button type="button" class="close font__size-18" data-dismiss="alert">
+          <span aria-hidden="true">
+            <i class="fa fa-times blue-cross"></i>
+          </span>
+          <span class="sr-only">Close</span>
+        </button>
+        <i class="start-icon fa fa-info-circle faa-shake animated"></i>
+        <strong class="font__weight-semibold">Heads up!</strong> &nbsp; This is
+        a reminder to let you know that one or more of your reminders have been
+        triggered, please check the current crypto prices and your portfolio.
       </div>
-      </div>
+    </div>
+  </div>
   <div>
     <!-- <h1>This is an portoflio page</h1> -->
     <div class="container currency-portfolio-div">
@@ -531,7 +537,7 @@ export default {
   name: "portfolio",
   data: function () {
     return {
-        alert: 0,
+      alert: 0,
       novaValuta: "",
       novaKolicina: "",
       refresh: 0,
@@ -547,43 +553,44 @@ export default {
   },
   created() {
     setTimeout(() => {
-this.getReminder();
-}, 2000)
+      this.getReminder();
+    }, 2000);
     this.interval = setInterval(() => this.getWallet(), 1200);
   },
   methods: {
-    getReminder(){
-   
-  var docRe = db.collection("reminderi").doc(store.currentUser);
-  docRe.get().then((doc) => {
-      if (doc.exists) {
-         
-        this.pBTC = doc.data().BTC;
-        this.pLTC = doc.data().LTC;
-        this.pADA = doc.data().ADA;
-        this.pBNB = doc.data().BNB;
-        this.pSOL = doc.data().SOL;
-        this.pETH = doc.data().ETH;
-  
-} else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-  }).catch((error) => {
-      console.log("Error getting document:", error);
-  })},
-    playSound () {
-        var audio = new Audio('http://docs.google.com/uc?export=open&id=1r9E4Lj17lLdRPwY_d6xSsu3T9V8w66v2');
-        audio.play();
+    getReminder() {
+      var docRe = db.collection("reminderi").doc(store.currentUser);
+      docRe
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            this.pBTC = doc.data().BTC;
+            this.pLTC = doc.data().LTC;
+            this.pADA = doc.data().ADA;
+            this.pBNB = doc.data().BNB;
+            this.pSOL = doc.data().SOL;
+            this.pETH = doc.data().ETH;
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    },
+    playSound() {
+      var audio = new Audio(
+        "http://docs.google.com/uc?export=open&id=1r9E4Lj17lLdRPwY_d6xSsu3T9V8w66v2"
+      );
+      audio.play();
     },
     getWallet() {
-       
       var docRef = db.collection("wallet").doc(store.currentUser);
       docRef
         .get()
         .then((doc) => {
           if (doc.exists) {
-             
             this.BTC = doc.data().BTC;
             this.LTC = doc.data().LTC;
             this.ADA = doc.data().ADA;
@@ -608,29 +615,113 @@ this.getReminder();
         .catch((error) => {
           console.log("Error getting document:", error);
         });
-      if (this.pBTC > 0){                                                                         
-      if(this.cryptos.BTC.USD > (store.pocetnaVrijednostBTC + store.pocetnaVrijednostBTC/100*this.pBTC)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.BTC.USD < (store.pocetnaVrijednostBTC - store.pocetnaVrijednostBTC/100*this.pBTC)) { this.alert = 1; this.playSound();}
+      if (this.pBTC > 0) {
+        if (
+          this.cryptos.BTC.USD >
+          store.pocetnaVrijednostBTC +
+            (store.pocetnaVrijednostBTC / 100) * this.pBTC
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.BTC.USD <
+          store.pocetnaVrijednostBTC -
+            (store.pocetnaVrijednostBTC / 100) * this.pBTC
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
-       if (this.pETH > 0){                                                                         
-      if(this.cryptos.ETH.USD > (store.pocetnaVrijednostETH + store.pocetnaVrijednostETH/100*this.pETH)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.ETH.USD < (store.pocetnaVrijednostETH - store.pocetnaVrijednostETH/100*this.pETH)) { this.alert = 1; this.playSound();}
+      if (this.pETH > 0) {
+        if (
+          this.cryptos.ETH.USD >
+          store.pocetnaVrijednostETH +
+            (store.pocetnaVrijednostETH / 100) * this.pETH
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.ETH.USD <
+          store.pocetnaVrijednostETH -
+            (store.pocetnaVrijednostETH / 100) * this.pETH
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
-      if (this.pADA > 0){                                                                         
-      if(this.cryptos.ADA.USD > (store.pocetnaVrijednostADA + store.pocetnaVrijednostADA/100*this.pADA)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.ADA.USD < (store.pocetnaVrijednostADA - store.pocetnaVrijednostADA/100*this.pADA)) { this.alert = 1; this.playSound();}
+      if (this.pADA > 0) {
+        if (
+          this.cryptos.ADA.USD >
+          store.pocetnaVrijednostADA +
+            (store.pocetnaVrijednostADA / 100) * this.pADA
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.ADA.USD <
+          store.pocetnaVrijednostADA -
+            (store.pocetnaVrijednostADA / 100) * this.pADA
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
-      if (this.pBNB > 0){                                                                         
-      if(this.cryptos.BNB.USD > (store.pocetnaVrijednostBNB + store.pocetnaVrijednostBNB/100*this.pBNB)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.BNB.USD < (store.pocetnaVrijednostBNB - store.pocetnaVrijednostBNB/100*this.pBNB)) { this.alert = 1; this.playSound();}
+      if (this.pBNB > 0) {
+        if (
+          this.cryptos.BNB.USD >
+          store.pocetnaVrijednostBNB +
+            (store.pocetnaVrijednostBNB / 100) * this.pBNB
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.BNB.USD <
+          store.pocetnaVrijednostBNB -
+            (store.pocetnaVrijednostBNB / 100) * this.pBNB
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
-      if (this.pSOL > 0){                                                                         
-      if(this.cryptos.SOL.USD > (store.pocetnaVrijednostSOL + store.pocetnaVrijednostSOL/100*this.pSOL)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.SOL.USD < (store.pocetnaVrijednostSOL - store.pocetnaVrijednostSOL/100*this.pSOL)) { this.alert = 1; this.playSound();}
+      if (this.pSOL > 0) {
+        if (
+          this.cryptos.SOL.USD >
+          store.pocetnaVrijednostSOL +
+            (store.pocetnaVrijednostSOL / 100) * this.pSOL
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.SOL.USD <
+          store.pocetnaVrijednostSOL -
+            (store.pocetnaVrijednostSOL / 100) * this.pSOL
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
-      if (this.pLTC > 0){                                                                         
-      if(this.cryptos.LTC.USD > (store.pocetnaVrijednostLTC + store.pocetnaVrijednostLTC/100*this.pLTC)) { this.alert = 1; this.playSound();}
-      if(this.cryptos.LTC.USD < (store.pocetnaVrijednostLTC - store.pocetnaVrijednostLTC/100*this.pLTC)) { this.alert = 1; this.playSound();}
+      if (this.pLTC > 0) {
+        if (
+          this.cryptos.LTC.USD >
+          store.pocetnaVrijednostLTC +
+            (store.pocetnaVrijednostLTC / 100) * this.pLTC
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
+        if (
+          this.cryptos.LTC.USD <
+          store.pocetnaVrijednostLTC -
+            (store.pocetnaVrijednostLTC / 100) * this.pLTC
+        ) {
+          this.alert = 1;
+          this.playSound();
+        }
       }
     },
     unesiValutu() {
