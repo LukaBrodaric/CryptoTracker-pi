@@ -1,50 +1,94 @@
 <template>
   <div class="container" :class="rightpanel" id="container">
     <div class="form-container sign-up-container">
-            <div v-if="errorMessage !== ''" class="alert alert-danger position-absolute" role="alert">
-                {{ errorMessage }}
-            </div>
-            <div v-if="successMessage !== ''" class="alert alert-success" role="alert">
-                {{ successMessage }}
-            </div>
+      <div
+        v-if="errorMessage !== ''"
+        class="alert alert-danger position-absolute"
+        role="alert"
+      >
+        {{ errorMessage }}
+      </div>
+      <div
+        v-if="successMessage !== ''"
+        class="alert alert-success"
+        role="alert"
+      >
+        {{ successMessage }}
+      </div>
       <form action="#" @submit.prevent="signupRequest" id="signup-form">
         <h1>Create Account</h1>
         <div class="social-container">
-          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/" class="social"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.google.com/" class="social"
+            ><i class="fab fa-google-plus-g"></i
+          ></a>
+          <a href="https://www.linkedin.com/" class="social"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
         </div>
-        <span>or use your email for registration</span>
+        <span>using your email for registration</span>
         <input type="text" v-model="username" placeholder="Username" />
         <input type="email" id="email" v-model="email" placeholder="Email" />
-        <input type="password" id="password" v-model="password" placeholder="Password" />
-        <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}">
-          <span v-if="! xhrRequest">Sign Up</span>
+        <input
+          type="password"
+          id="password"
+          v-model="password"
+          placeholder="Password"
+        />
+        <button
+          v-bind:disabled="xhrRequest"
+          v-bind:class="{ disabled: xhrRequest }"
+        >
+          <span v-if="!xhrRequest">Sign Up</span>
           <span v-if="xhrRequest">Please Wait...</span>
         </button>
-
       </form>
     </div>
     <div class="form-container sign-in-container">
-      <div v-if="errorMessage !== ''" class="alert alert-danger position-absolute" role="alert">
+      <div
+        v-if="errorMessage !== ''"
+        class="alert alert-danger position-absolute"
+        role="alert"
+      >
         {{ errorMessage }}
       </div>
-      <div v-if="successMessage !== ''" class="alert alert-success" role="alert">
+      <div
+        v-if="successMessage !== ''"
+        class="alert alert-success"
+        role="alert"
+      >
         {{ successMessage }}
       </div>
       <form action="#" @submit.prevent="loginRequest" id="login-form">
         <h1>Sign in</h1>
         <div class="social-container">
-          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/" class="social"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.google.com/" class="social"
+            ><i class="fab fa-google-plus-g"></i
+          ></a>
+          <a href="https://www.linkedin.com/" class="social"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
         </div>
-        <span>or use your account</span>
+        <span>using your account</span>
         <input type="email" placeholder="Email" v-model="email" id="email" />
-        <input type="password" placeholder="Password" v-model="password" id="password" />
+        <input
+          type="password"
+          placeholder="Password"
+          v-model="password"
+          id="password"
+        />
         <a href="#">Forgot your password?</a>
-        <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}" class="btn btn-lg btn-primary px-4">
-          <span v-if="! xhrRequest">Login</span>
+        <button
+          v-bind:disabled="xhrRequest"
+          v-bind:class="{ disabled: xhrRequest }"
+          class="btn btn-lg btn-primary px-4"
+        >
+          <span v-if="!xhrRequest">Login</span>
           <span v-if="xhrRequest">Please Wait...</span>
         </button>
       </form>
@@ -307,13 +351,13 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 let db = firebase.firestore();
-import store from '@/store';
+import store from "@/store";
 export default {
   name: "Signup",
   data() {
     return {
       rightpanel: "",
-      username:"",
+      username: "",
       email: "",
       password: "",
       xhrRequest: false,
@@ -348,7 +392,7 @@ export default {
               ADA: 0,
               BNB: 0,
               SOL: 0,
-            })
+            });
           },
           (error) => {
             v.errorMessage = error.message.slice(10);
@@ -356,25 +400,28 @@ export default {
           }
         );
     },
-        loginRequest() {
-            let v = this;
+    loginRequest() {
+      let v = this;
 
-            v.xhrRequest = true;
-            v.errorMessage = "";
-            v.successMessage = "";
+      v.xhrRequest = true;
+      v.errorMessage = "";
+      v.successMessage = "";
 
-            firebase.auth().signInWithEmailAndPassword(v.email, v.password).then(
-                () => {
-                    alert('Successfully logged in');
-                    v.xhrRequest = false;
-                    v.$router.replace({name: 'Home'});
-                }, 
-                (error) => {
-                    v.errorMessage = error.message.slice(10);
-                    v.xhrRequest = false;
-                }
-            )
-        },
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(v.email, v.password)
+        .then(
+          () => {
+            alert("Successfully logged in");
+            v.xhrRequest = false;
+            v.$router.replace({ name: "Home" });
+          },
+          (error) => {
+            v.errorMessage = error.message.slice(10);
+            v.xhrRequest = false;
+          }
+        );
+    },
   },
 };
 </script>
