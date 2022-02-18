@@ -209,29 +209,29 @@ this.getReminder();
         .catch((error) => {
           console.log("Error getting document:", error);
         });
-        if (this.pBTC > 0){                                                                         // Ovdje ubaciti reminder api
-      if(store.pocetnaVrijednostBTC - this.cryptos.BTC.USD > (store.pocetnaVrijednostBTC/100*this.pBTC)) {  this.alert = 1; this.playSound();}
-      if(store.pocetnaVrijednostBTC - this.cryptos.BTC.USD < (store.pocetnaVrijednostBTC/100*this.pBTC)) {  this.alert = 1; this.playSound();}
+      if (this.pBTC > 0){                                                                         
+      if(this.cryptos.BTC.USD > (store.pocetnaVrijednostBTC + store.pocetnaVrijednostBTC/100*this.pBTC)) { this.alert = 1; this.playSound();}
+      if(this.cryptos.BTC.USD < (store.pocetnaVrijednostBTC - store.pocetnaVrijednostBTC/100*this.pBTC)) { this.alert = 1; this.playSound();}
       }
-       if (this.pADA > 0){                                                                         // Ovdje ubaciti reminder api
-      if(store.pocetnaVrijednostADA - this.cryptos.ADA.USD > (store.pocetnaVrijednostADA/100*this.pADA)) {  this.alert = 1; this.playSound();}
-      if(store.pocetnaVrijednostADA - this.cryptos.ADA.USD < (store.pocetnaVrijednostADA/100*this.pADA)) {  this.alert = 1; this.playSound();}
+       if (this.pETH > 0){                                                                         
+      if(this.cryptos.ETH.USD > (store.pocetnaVrijednostETH + store.pocetnaVrijednostETH/100*this.pETH)) { this.alert = 1; this.playSound();}
+      if(this.cryptos.ETH.USD < (store.pocetnaVrijednostETH - store.pocetnaVrijednostETH/100*this.pETH)) { this.alert = 1; this.playSound();}
       }
-      if (this.pSOL > 0){                                                                         // Ovdje ubaciti reminder api
-      if(store.pocetnaVrijednostSOL - this.cryptos.SOL.USD > (store.pocetnaVrijednostSOL/100*this.pSOL)) {  this.alert = 1; this.playSound();}
-      if(store.pocetnaVrijednostSOL - this.cryptos.SOL.USD < (store.pocetnaVrijednostSOL/100*this.pSOL)) {  this.alert = 1; this.playSound();}
+      if (this.pADA > 0){                                                                         
+      if(this.cryptos.ADA.USD > (store.pocetnaVrijednostADA + store.pocetnaVrijednostADA/100*this.pADA)) { this.alert = 1; this.playSound();}
+      if(this.cryptos.ADA.USD < (store.pocetnaVrijednostADA - store.pocetnaVrijednostADA/100*this.pADA)) { this.alert = 1; this.playSound();}
       }
-      if (this.pBNB > 0){                                                                         // Ovdje ubaciti reminder api
-      if(store.pocetnaVrijednostBNB - this.cryptos.BNB.USD > (store.pocetnaVrijednostBNB/100*this.pBNB)) {  this.alert = 1; this.playSound();}
-      if(store.pocetnaVrijednostBNB - this.cryptos.BNB.USD < (store.pocetnaVrijednostBNB/100*this.pBNB)) {  this.alert = 1; this.playSound();}
+      if (this.pBNB > 0){                                                                         
+      if(this.cryptos.BNB.USD > (store.pocetnaVrijednostBNB + store.pocetnaVrijednostBNB/100*this.pBNB)) { this.alert = 1; this.playSound();}
+      if(this.cryptos.BNB.USD < (store.pocetnaVrijednostBNB - store.pocetnaVrijednostBNB/100*this.pBNB)) { this.alert = 1; this.playSound();}
       }
-              if (this.pETH > 0){                                                                         // Ovdje ubaciti reminder api
-      if(store.pocetnaVrijednostETH - this.cryptos.ETH.USD > (store.pocetnaVrijednostETH/100*this.pETH)) {  this.alert = 1; this.playSound();}
-      if(store.pocetnaVrijednostETH - this.cryptos.ETH.USD < (store.pocetnaVrijednostETH/100*this.pETH)) {  this.alert = 1; this.playSound();}
+      if (this.pSOL > 0){                                                                         
+      if(this.cryptos.SOL.USD > (store.pocetnaVrijednostSOL + store.pocetnaVrijednostSOL/100*this.pSOL)) { this.alert = 1; this.playSound();}
+      if(this.cryptos.SOL.USD < (store.pocetnaVrijednostSOL - store.pocetnaVrijednostSOL/100*this.pSOL)) { this.alert = 1; this.playSound();}
       }
-      if (this.pLTC > 0){                                                                         // Ovdje ubaciti reminder api
-      if(store.pocetnaVrijednostLTC - this.cryptos.LTC.USD > (store.pocetnaVrijednostLTC/100*this.pLTC)) {  this.alert = 1; this.playSound();}
-      if(store.pocetnaVrijednostLTC - this.cryptos.LTC.USD < (store.pocetnaVrijednostLTC/100*this.pLTC)) {  this.alert = 1; this.playSound();}
+      if (this.pLTC > 0){                                                                         
+      if(this.cryptos.LTC.USD > (store.pocetnaVrijednostLTC + store.pocetnaVrijednostLTC/100*this.pLTC)) { this.alert = 1; this.playSound();}
+      if(this.cryptos.LTC.USD < (store.pocetnaVrijednostLTC - store.pocetnaVrijednostLTC/100*this.pLTC)) { this.alert = 1; this.playSound();}
       }
     },
     setReminder(){
