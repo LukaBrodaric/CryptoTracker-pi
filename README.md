@@ -21,4 +21,4 @@ _Figma:_ https://www.figma.com/proto/53yeQnddfi9WiPndZxOB6q/CryptoTracker_final?
 
 ### Javni link na aplikaciju:
 
-_WEB:_
+_WEB:_ https://fipucryptotracker.netlify.app/

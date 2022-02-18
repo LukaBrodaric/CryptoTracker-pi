@@ -9,7 +9,11 @@
   </div>
 
   <button id="botunic">
-    <span> <a href="/signup"> GET STARTED </a></span>
+    <span>
+      <a href="https://fipucryptotracker.netlify.app/signup">
+        GET STARTED
+      </a></span
+    >
   </button>
 
   <p class="podnozje">Fakultet Informatike u Puli</p>
