@@ -14,7 +14,7 @@
 
         <div class="text-center">
           <button>
-            <span> <router-link to="/signup"> GET STARTED </router-link></span>
+            <span> <router-link to="/Home"> GET STARTED </router-link></span>
           </button>
         </div>
         <p class="podnozje">Fakultet Informatike u Puli</p>
