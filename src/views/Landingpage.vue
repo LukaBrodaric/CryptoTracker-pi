@@ -1,61 +1,51 @@
 <template>
   <particles />
 
-  <div class="margina">
-    <p class="naslov">
-      Welcome to Crypto<span style="color: #0099ff">Tracker</span>
-    </p>
-    <p class="podnaslov">Keep track on everything. Everywhere.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-10">
+        <div class="">
+          <p class="naslov">
+            Welcome to Crypto<span style="color: #0099ff">Tracker</span>
+          </p>
+          <p class="podnaslov">Keep track on everything. Everywhere.</p>
+        </div>
+
+        <div class="text-center">
+          <button>
+            <span> <router-link to="/signup"> GET STARTED </router-link></span>
+          </button>
+        </div>
+        <p class="podnozje">Fakultet Informatike u Puli</p>
+      </div>
+      <div class="col"></div>
+    </div>
   </div>
-
-  <button id="botunic">
-    <span> <router-link to="/signup"> GET STARTED </router-link></span>
-  </button>
-
-  <p class="podnozje">Fakultet Informatike u Puli</p>
 </template>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Roboto:700");
 
-#botunic {
-  margin-top: 100px;
+body {
+  background-color: #999;
 }
 
-.podnozje {
-  position: fixed;
-  width: 100%;
-  bottom: 30px;
-  font-size: 12px;
-  color: #999;
-  margin-top: 200px;
-}
-
-.botunic {
-  margin-top: 200px;
-}
-
-.margina {
-  margin-bottom: 400px;
-}
-
-.podnaslov {
-  position: fixed;
-  width: 100%;
-  margin-top: 270px;
-  margin-bottom: 100px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  color: #fff;
-  font-size: 30px;
-}
 .naslov {
-  position: fixed;
   width: 100%;
-  margin-top: 180px;
-  margin-bottom: 100px;
+  text-align: center;
   font-family: "Comic Sans MS", cursive, sans-serif;
   color: #fff;
   font-size: 50px;
+  margin-top: 250px;
+}
+
+.podnaslov {
+  width: 100%;
+  text-align: center;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: #fff;
+  font-size: 30px;
 }
 
 button {
@@ -75,10 +65,9 @@ button {
   display: inline-block;
   position: relative;
   transition: 0.5s;
+  margin-top: 100px;
 }
-a {
-  color: #fff;
-}
+
 button:after {
   content: "»";
   position: absolute;
@@ -96,6 +85,17 @@ button:hover {
 button:hover:after {
   opacity: 1;
   right: 10px;
+}
+a {
+  color: #fff;
+}
+.podnozje {
+  text-align: center;
+  width: 100%;
+  font-size: 12px;
+  color: #999;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  margin-top: 550px;
 }
 </style>
 
