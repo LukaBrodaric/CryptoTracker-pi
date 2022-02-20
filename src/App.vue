@@ -1,4 +1,5 @@
 <template>
+  <link rel="icon" src="@/assets/favicon.ico" />
   <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
       <router-link to="/">
