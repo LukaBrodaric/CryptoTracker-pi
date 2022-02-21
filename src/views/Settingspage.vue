@@ -598,6 +598,14 @@ export default {
     setTimeout(() => {
       this.getNotifications();
     }, 1000);
+    setTimeout(() => {
+      store.pocetnaVrijednostBTC = this.cryptos.BTC.USD;
+      store.pocetnaVrijednostETH = this.cryptos.ETH.USD;
+      store.pocetnaVrijednostBNB = this.cryptos.BNB.USD;
+      store.pocetnaVrijednostSOL = this.cryptos.SOL.USD;
+      store.pocetnaVrijednostLTC = this.cryptos.LTC.USD;
+      store.pocetnaVrijednostADA = this.cryptos.ADA.USD;
+    }, 5000);
   },
   methods: {
     getWallet() {
