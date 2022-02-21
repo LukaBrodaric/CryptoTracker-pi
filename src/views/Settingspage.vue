@@ -583,6 +583,8 @@ export default {
       pADA: 0,
       pBNB: 0,
       pSOL: 0,
+      cryptos: [],
+      errors: [],
     };
   },
   components: {
@@ -621,7 +623,6 @@ export default {
                 this.errors.push(e);
               });
           } else {
-            // doc.data() will be undefined in this case
             console.log("No such document!");
           }
         })
