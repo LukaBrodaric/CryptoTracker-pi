@@ -4,12 +4,13 @@
   <div class="container">
     <div class="row">
       <div class="col"></div>
-      <div class="col-10">
+      <div class="col-12">
+        <!--Naslov i podnaslov -->
         <div class="">
-          <p class="naslov">
+          <p class="title">
             Welcome to Crypto<span style="color: #0099ff">Tracker</span>
           </p>
-          <p class="podnaslov">Keep track on everything. Everywhere.</p>
+          <p class="subtitle">Keep track on everything. Everywhere.</p>
         </div>
 
         <div class="text-center">
@@ -17,7 +18,7 @@
             <span> <router-link to="/Home"> GET STARTED </router-link></span>
           </button>
         </div>
-        <p class="podnozje">Fakultet Informatike u Puli</p>
+        <p class="footer">Fakultet Informatike u Puli</p>
       </div>
       <div class="col"></div>
     </div>
@@ -27,11 +28,7 @@
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Roboto:700");
 
-body {
-  background-color: #999;
-}
-
-.naslov {
+.title {
   width: 100%;
   text-align: center;
   font-family: "Comic Sans MS", cursive, sans-serif;
@@ -40,7 +37,7 @@ body {
   margin-top: 250px;
 }
 
-.podnaslov {
+.subtitle {
   width: 100%;
   text-align: center;
   font-family: "Comic Sans MS", cursive, sans-serif;
@@ -86,10 +83,12 @@ button:hover:after {
   opacity: 1;
   right: 10px;
 }
+
 a {
   color: #fff;
 }
-.podnozje {
+
+.footer {
   text-align: center;
   width: 100%;
   font-size: 12px;

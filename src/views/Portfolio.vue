@@ -20,7 +20,7 @@
     </div>
   </div>
   <div>
-    <!-- <h1>This is an portoflio page</h1> -->
+    <!-- Naslov i ukupna kolicina -->
     <div class="container currency-portfolio-div">
       <div class="div-header">
         <h2>Portfolio:</h2>
@@ -92,6 +92,8 @@
           </div>
         </div>
       </div>
+
+      <!-- Lista s valutama !-->
       <ul class="currency-div">
         <li>
           <a href="/Home">
@@ -200,6 +202,7 @@
 #open-modal {
   * {
     box-sizing: border-box;
+    font-family: "Lato", sans-serif;
   }
   body {
     color: white;

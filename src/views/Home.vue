@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <!--  <h1>Cryptotracker</h1> -->
     <body>
       <div v-if="alert == 1">
         <div class="col-sm-12">
@@ -54,7 +53,7 @@
         <div class="single-currency">
           <div class="currency-price-div">
             <div class="left">
-              <img src="@/assets/btc.png" alt="" class="currency-logo" />
+              <img src="@/assets/btc.png" class="currency-logo" />
               <div>
                 <h4 class="sort-name">btc</h4>
                 <span class="full-name">Bitcoin</span>
@@ -66,7 +65,7 @@
             </div>
           </div>
 
-          <!-- Ovdje ide live graf  -->
+          <!-- Live grafikon  -->
           <div class="currency-chart">
             <div id="ethChart">
               <VueTradingView
@@ -140,7 +139,7 @@
               </div>
             </div>
           </div>
-          <!-- Ovdje idu Live vjesti -->
+          <!-- Live novosti -->
           <div class="currency-news-div">
             <a href="/news" class="news-header">
               <h2>News</h2>
