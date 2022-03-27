@@ -41,6 +41,10 @@
         <li class="nav-item" v-if="refresh == 0">
           <router-link to="/settingspage">Settings</router-link>
         </li>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item" v-if="refresh == 0">
+          <router-link to="/adminpanel">adminpanel</router-link>
+        </li>
       </ul>
       <br />
       <button
@@ -105,12 +109,18 @@ export default {
   },
   mounted() {
     this.Observer();
+  setTimeout(() => {
+  }, 1500)
     //alert(store.currentUser);
   },
   methods: {
     Observer() {
       firebase.auth().onAuthStateChanged((user) => {
         const currentRoute = router.currentRoute;
+        console.log(currentRoute._value.name);
+        if(currentRoute._value.name==="adminpanel"){
+          console.log("this works");
+        }
         if (user) {
           // User is signed in.
           console.log("Logged in as ", user.email);

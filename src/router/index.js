@@ -123,6 +123,18 @@ const routes = [
       needsUser: true,
     },
   },
+  {
+    path: "/adminpanel",
+    name: "adminpanel",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/adminpanel.vue"),
+    meta: {
+      needsUser: true,
+    },
+  },
 ];
 
 const router = createRouter({
@@ -141,7 +153,14 @@ setTimeout(() => {
       store.currentUser
     );
     const noUser = store.currentUser === null;
-
+    const admin = store.currentUser === "admin@gmail.com";
+    if(!noUser){
+      console.log(to.name, "aaaaa");
+    }
+    if(to.name==="adminpanel"){
+      if(admin) next();
+      else next(false);
+    }
     if (noUser && to.meta.needsUser) {
       // ako korisnik nije logiran, a stranica zahtjeva login
       console.log("Ne dopustam");

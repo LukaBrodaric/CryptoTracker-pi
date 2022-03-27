@@ -25,12 +25,6 @@
       <div class="div-header">
         <h2>Portfolio:</h2>
         <p class="wallet-settings">
-          <ion-icon
-            name="wallet-outline"
-            role="img"
-            class="md hydrated"
-            aria-label="wallet outline"
-          ></ion-icon>
         </p>
       </div>
       <div class="total">
@@ -404,14 +398,6 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
   text-decoration: none;
-}
-
-.wallet-settings ion-icon {
-  position: relative;
-  font-size: 20px;
-  color: #4376fe;
-  font-family: "Lato", sans-serif;
-  top: 2px;
 }
 
 .currency-portfolio-div .currency-div li a .left {
