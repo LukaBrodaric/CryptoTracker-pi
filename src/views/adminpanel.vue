@@ -14,12 +14,12 @@ export default {
   },
 mounted(){
   setTimeout(()=>{
-    const admin = store.currentUser === "admin@gmail.com";
+    const admin = store.currentUser === "adminn@gmail.com";
     console.log(store.currentUser);
       if(!admin){
     router.push("Home");
   }  
-    },2000);  
+    },500);  
 },
 }
 

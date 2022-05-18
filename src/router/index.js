@@ -153,13 +153,16 @@ setTimeout(() => {
       store.currentUser
     );
     const noUser = store.currentUser === null;
-    const admin = store.currentUser === "admin@gmail.com";
     if(!noUser){
       console.log(to.name, "aaaaa");
     }
     if(to.name==="adminpanel"){
-      if(admin) next();
-      else next(false);
+      if(store.admin){
+        next();
+      }
+      else{ next(false);
+      console.log("NE SMIJES");
+      }
     }
     if (noUser && to.meta.needsUser) {
       // ako korisnik nije logiran, a stranica zahtjeva login

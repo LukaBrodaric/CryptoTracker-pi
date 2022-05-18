@@ -126,6 +126,9 @@ export default {
           console.log("Logged in as ", user.email);
           store.currentUser = user.email;
           this.refresh = 0;
+          if(store.currentUser=="adminn@gmail.com"){
+          store.admin=true;
+          }
           //ovo mi nije radilo i ne znam dal radi
           if (!currentRoute.value.meta.needsUser) {
             router.push({ name: "Home" });

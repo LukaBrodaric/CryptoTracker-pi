@@ -7,5 +7,5 @@ export default {
     pocetnaVrijednostSOL:null,
     pocetnaVrijednostBNB:null,
     pocetnaVrijednostLTC:null,
-
+    admin:false,
 };
