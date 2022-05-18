@@ -1,0 +1,10 @@
+DINAMIČKE RUTE
+adminpanel - za provjeru usera koji imaju upaljene notifikacije za
+novosti o aplikaciji (izlista mailove na koje se šalju novosti)
+delete account i reset password option
+dodati još kriptovaluta i blockchainova
+popraviti notifikacije
+popraviti style na landing pageu
+dodati opciju contact us (slanje maila)
+promijeniti imena varijabli (zovu se isto prilikom singupa i logina)
+contact us window

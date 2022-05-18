@@ -42,7 +42,7 @@
           <router-link to="/settingspage">Settings</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <li class="nav-item" v-if="refresh == 0">
+        <li class="nav-item" v-if="administrator == 1">
           <router-link to="/adminpanel">adminpanel</router-link>
         </li>
       </ul>
@@ -105,6 +105,7 @@ export default {
     return {
       store,
       refresh: 0,
+      administrator: 0,
     };
   },
   mounted() {
@@ -128,6 +129,7 @@ export default {
           this.refresh = 0;
           if(store.currentUser=="adminn@gmail.com"){
           store.admin=true;
+          this.administrator=1;
           }
           //ovo mi nije radilo i ne znam dal radi
           if (!currentRoute.value.meta.needsUser) {
@@ -137,6 +139,8 @@ export default {
           // User is signed out
           console.log("No user logged in");
           store.currentUser = null;
+          this.administrator=0;
+          store.admin=false;
           this.refresh = 1;
           if (currentRoute.value.meta.needsUser) {
             router.push({ name: "Signup" });

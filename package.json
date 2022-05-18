@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/core": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
+    "@emailjs/browser": "^3.6.2",
     "@vueform/toggle": "^2.0.1",
     "axios": "^0.25.0",
     "core-js": "^3.6.5",

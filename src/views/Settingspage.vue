@@ -226,7 +226,12 @@
           </a>
         </li>
       </ul>
-
+<a class="btn" href="#open-modal"
+            ><p style="color: #0099ff">
+              Contact us
+            </p></a
+          >
+          <br>
       <a href="#" class="sign-out-btn" @click="signout()">Sign Out</a>
     </div>
   </body>
