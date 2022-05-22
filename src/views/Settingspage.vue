@@ -1,16 +1,16 @@
 <template>
   <body>
-    <div v-if="alert == 1">
+    <div v-if="alertt == 1">
       <div class="col-sm-12">
         <div
-          class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
-          role="alert"
-          data-brk-library="component__alert"
+          class="alertt fade alertt-simple alertt-info alertt-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+          role="alertt"
+          data-brk-library="component__alertt"
         >
           <button
             type="button"
             class="close font__size-18"
-            data-dismiss="alert"
+            data-dismiss="alertt"
           >
             <span aria-hidden="true">
               <i class="fa fa-times blue-cross"></i>
@@ -30,17 +30,37 @@
         <h2>Settings</h2>
         <br />
         <p class="currency-settings">
-          <ion-icon
+          <!-- <ion-icon
             name="settings-outline"
             role="img"
             class="md hydrated"
             aria-label="settings outline"
-          ></ion-icon>
+          ></ion-icon> -->
         </p>
       </div>
       <br />
       <!-- Settings i edit profile -->
-
+          <div id="open-modal5" class="modal-window">
+            <div>
+              <a href="#" title="Close" class="modal-close"
+                >Close</a
+              >
+              <br />
+              <br />
+              <h1><b>Send us an email</b></h1>
+              <div>
+                <form style="margin-top: 5px">
+                  <textarea placeholder="Your message" class="form-control" v-model="textmessage"></textarea>
+                  <input
+                    type="submit"
+                    value="Send"
+                    @click.prevent="sendemail()"
+                    onsubmit=window.close()
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
       <div class="center">
         <div class="center">
           <h2>Edit Profile</h2>
@@ -226,7 +246,7 @@
           </a>
         </li>
       </ul>
-<a class="btn" href="#open-modal"
+<a class="btn" href="#open-modal5" @click="classremove"
             ><p style="color: #0099ff">
               Contact us
             </p></a
@@ -302,7 +322,7 @@
   --toggle-border-on: #0099ff;
 }
 
-#open-modal {
+#open-modal, #open-modal5 {
   * {
     box-sizing: border-box;
   }
@@ -323,12 +343,14 @@
   }
   label,
   input,
+  textarea,
   select {
     width: 100%;
     display: block;
     font-size: 1.2em;
   }
   input,
+  textarea,
   select {
     padding: 5px;
     margin-bottom: 20px;
@@ -571,13 +593,15 @@ import "firebase/compat/firestore";
 import Toggle from "@vueform/toggle";
 let db = firebase.firestore();
 import axios from "axios";
+import emailjs from '@emailjs/browser';
+import { MODULEDECLARATION_TYPES } from "@babel/types";
 
 export default {
   name: "settings",
   data: function () {
     return {
       add: 0,
-      alert: 0,
+      alertt: 0,
       novaValuta: "",
       novaKolicina: "",
       store,
@@ -613,6 +637,26 @@ export default {
     }, 5000);
   },
   methods: {
+    classremove(){
+   const openmodal = document.getElementById("open-modal5");
+  openmodal.classList.remove("d-none");
+    },
+    sendemail(){
+      const templateParams = {
+    from_name: store.currentUser,
+    message: this.textmessage
+};
+emailjs.send('service_q18j0g5','template_70wb9rg', templateParams, '5k1-fk5W2IMJjiyiJ')
+	.then((response) => {
+	   console.log('SUCCESS!', response.status, response.text);
+     alert("Message successfully sent");
+     const openmodal = document.getElementById("open-modal5");
+     openmodal.classList.add("d-none"); //style iz bootstrapa
+     this.textmessage="";
+	}, (err) => {
+	   console.log('FAILED...', err);
+	});
+    },
     getWallet() {
       var docRef = db.collection("wallet").doc(store.currentUser);
       docRef
@@ -648,7 +692,7 @@ export default {
           store.pocetnaVrijednostBTC +
             (store.pocetnaVrijednostBTC / 100) * this.pBTC
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
         if (
@@ -656,7 +700,7 @@ export default {
           store.pocetnaVrijednostBTC -
             (store.pocetnaVrijednostBTC / 100) * this.pBTC
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
       }
@@ -666,7 +710,7 @@ export default {
           store.pocetnaVrijednostETH +
             (store.pocetnaVrijednostETH / 100) * this.pETH
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
         if (
@@ -674,7 +718,7 @@ export default {
           store.pocetnaVrijednostETH -
             (store.pocetnaVrijednostETH / 100) * this.pETH
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
       }
@@ -684,7 +728,7 @@ export default {
           store.pocetnaVrijednostADA +
             (store.pocetnaVrijednostADA / 100) * this.pADA
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
         if (
@@ -692,7 +736,7 @@ export default {
           store.pocetnaVrijednostADA -
             (store.pocetnaVrijednostADA / 100) * this.pADA
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
       }
@@ -702,7 +746,7 @@ export default {
           store.pocetnaVrijednostBNB +
             (store.pocetnaVrijednostBNB / 100) * this.pBNB
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
         if (
@@ -710,7 +754,7 @@ export default {
           store.pocetnaVrijednostBNB -
             (store.pocetnaVrijednostBNB / 100) * this.pBNB
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
       }
@@ -720,7 +764,7 @@ export default {
           store.pocetnaVrijednostSOL +
             (store.pocetnaVrijednostSOL / 100) * this.pSOL
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
         if (
@@ -728,7 +772,7 @@ export default {
           store.pocetnaVrijednostSOL -
             (store.pocetnaVrijednostSOL / 100) * this.pSOL
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
       }
@@ -738,7 +782,7 @@ export default {
           store.pocetnaVrijednostLTC +
             (store.pocetnaVrijednostLTC / 100) * this.pLTC
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
         if (
@@ -746,7 +790,7 @@ export default {
           store.pocetnaVrijednostLTC -
             (store.pocetnaVrijednostLTC / 100) * this.pLTC
         ) {
-          this.alert = 1;
+          this.alertt = 1;
           this.playSound();
         }
       }

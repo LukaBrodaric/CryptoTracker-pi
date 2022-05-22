@@ -5,6 +5,6 @@ delete account i reset password option
 dodati još kriptovaluta i blockchainova
 popraviti notifikacije
 popraviti style na landing pageu
-dodati opciju contact us (slanje maila)
 promijeniti imena varijabli (zovu se isto prilikom singupa i logina)
 contact us window
+reminders updated pop-up
