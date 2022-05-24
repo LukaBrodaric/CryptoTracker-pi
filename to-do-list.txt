@@ -1,10 +1,8 @@
 DINAMIČKE RUTE
 adminpanel - za provjeru usera koji imaju upaljene notifikacije za
 novosti o aplikaciji (izlista mailove na koje se šalju novosti)
-delete account i reset password option
+delete account i reset password option (https://firebase.google.com/docs/auth/ios/manage-users)
 dodati još kriptovaluta i blockchainova
 popraviti notifikacije
 popraviti style na landing pageu
-promijeniti imena varijabli (zovu se isto prilikom singupa i logina)
-contact us window
 reminders updated pop-up

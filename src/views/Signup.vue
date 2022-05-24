@@ -30,10 +30,10 @@
         </div>
         <span>using your email for registration</span>
         <input type="text" v-model="username" placeholder="Username" />
-        <input type="email" id="email" v-model="email" placeholder="Email" />
+        <input type="email" id="regmail" v-model="email" placeholder="Email" />
         <input
           type="password"
-          id="password"
+          id="regpassword"
           v-model="password"
           placeholder="Password"
         />

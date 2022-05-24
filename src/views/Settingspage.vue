@@ -40,14 +40,14 @@
       </div>
       <br />
       <!-- Settings i edit profile -->
-          <div id="open-modal5" class="modal-window">
+          <div id="open-modal5" class="modal-window5">
             <div>
               <a href="#" title="Close" class="modal-close"
                 >Close</a
               >
               <br />
               <br />
-              <h1><b>Send us an email</b></h1>
+              <h1><b>Send us a message</b></h1>
               <div>
                 <form style="margin-top: 5px">
                   <textarea placeholder="Your message" class="form-control" v-model="textmessage"></textarea>
@@ -385,6 +385,42 @@
   }
   & > div {
     width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background: white;
+  }
+  header {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+}
+
+.modal-window5 {
+  text-align: center;
+  position: fixed;
+  background-color: #aaa9aa73;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  &:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  & > div {
+    width: 700px;
     position: absolute;
     top: 50%;
     left: 50%;
