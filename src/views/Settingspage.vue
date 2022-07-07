@@ -113,7 +113,7 @@
           >
           <div id="open-modal" class="modal-window">
             <div>
-              <a href="#" title="Close" class="modal-close" @click="add = !add"
+              <a href="#" title="Close" class="modal-close" @click="add = 0"
                 >Close</a
               >
               <br />

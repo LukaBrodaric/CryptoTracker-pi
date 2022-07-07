@@ -29,23 +29,23 @@
       <section class="container currency-div">
         <!-- Izbronik valuta -->
         <ul class="currency-nav">
-          <li class="currency-active">
-            <router-link to="/Home">BTC</router-link>
+          <li id="BTCnav">
+            <a href="/Home/BTC">BTC</a>
           </li>
-          <li>
-            <router-link to="/Eth">ETH</router-link>
+          <li id="ETHnav">
+            <a href="/Home/ETH">ETH</a>
           </li>
-          <li>
-            <router-link to="/Ltc">LTC</router-link>
+          <li id="LTCnav">
+            <a href="/Home/LTC">LTC</a>
           </li>
-          <li>
-            <router-link to="/Ada">ADA</router-link>
+          <li id="ADAnav">
+            <a href="/Home/ADA">ADA</a>
           </li>
-          <li>
-            <router-link to="/Bnb">BNB</router-link>
+          <li id="BNBnav">
+            <a href="/Home/BNB">BNB</a>
           </li>
-          <li>
-            <router-link to="/Sol">SOL</router-link>
+          <li id="SOLnav">
+            <a href="/Home/SOL">SOL</a>
           </li>
         </ul>
 
@@ -53,15 +53,15 @@
         <div class="single-currency">
           <div class="currency-price-div">
             <div class="left">
-              <img src="@/assets/btc.png" class="currency-logo" />
+              <img :src="require(`@/assets/${cryptocurrency.toLowerCase()}.png`)" class="currency-logo" />
               <div>
-                <h4 class="sort-name">btc</h4>
-                <span class="full-name">Bitcoin</span>
+                <h4 class="sort-name">{{this.cryptocurrency}}</h4>
+                <span class="full-name">{{this.cryptos[cryptocurrency].name}}</span>
               </div>
             </div>
             <div class="right">
-              <h4 class="current-price">${{ this.cryptos.BTC.USD }}</h4>
-              <span class="currency-qnt">1.00 btc</span>
+              <h4 class="current-price">${{ this.cryptos[cryptocurrency].USD }}</h4>
+              <span class="currency-qnt">1.00 {{cryptocurrency}}</span>
             </div>
           </div>
 
@@ -72,7 +72,7 @@
                 :options="{
                   width: '1000',
                   height: '520',
-                  symbol: 'BINANCE:BTCUSDT',
+                  symbol: `BINANCE:${cryptocurrency}USDT`,
                   theme: 'light',
                 }"
               />
@@ -83,14 +83,14 @@
           <div class="currency-balance-div">
             <div class="left">
               <p>Total balance</p>
-              <h5>{{ this.BTC }} BTC</h5>
+              <h5>{{ this.novcanik }} {{cryptocurrency}}</h5>
             </div>
             <div class="right">
-              <h5>${{ (this.cryptos.BTC.USD * this.BTC).toFixed(2) }}</h5>
+              <h5>${{ (this.cryptos[cryptocurrency].USD * this.novcanik).toFixed(2) }}</h5>
             </div>
           </div>
 
-          <div class="balance-reminder btc-reminder">
+          <div class="balance-reminder" :class="`${cryptocurrency.toLowerCase()}-reminder`">
             <a href="#open-modal" class="reminder-btn">Add reminder</a>
           </div>
           <div id="open-modal" class="modal-window">
@@ -154,7 +154,7 @@
                   scrolling="yes"
                   allowtransparency="true"
                   frameborder="0"
-                  src="https://cryptopanic.com/widgets/news/?bg_color=FFFFFF&amp;currencies=BTC&amp;font_family=sans&amp;font_size=20&amp;header_bg_color=FFFFFF&amp;header_text_color=FFFFFF&amp;link_color=000000&amp;news_feed=recent&amp;posts_limit=3&amp;text_color=2C3E50&amp;title=Trending%20news"
+                  src="https://cryptopanic.com/widgets/news/?bg_color=FFFFFF&amp;currencies=BTC%2CETH%2CLTC%2CADA%2CBNB%2CSOL&amp;font_family=sans&amp;font_size=20&amp;header_bg_color=FFFFFF&amp;header_text_color=FFFFFF&amp;link_color=000000&amp;news_feed=recent&amp;posts_limit=3&amp;text_color=2C3E50&amp;"
                   height="350px"
                 ></iframe>
               </li>
@@ -534,8 +534,28 @@ body {
   margin: 16px 8px 0;
 }
 
-.currency-div .balance-reminder.btc-reminder {
+.btc-reminder {
   background-color: #e0c11d12;
+}
+
+.eth-reminder {
+  background-color: #6375c315;
+}
+
+.sol-reminder {
+  background-color: #cb4ee812;
+}
+
+.ltc-reminder {
+  background-color: #30e0a112;
+}
+
+.ada-reminder {
+  background-color: #1c86a712;
+}
+
+.bnb-reminder {
+  background-color: #faff0012;
 }
 
 .currency-div .balance-reminder .reminder-btn {
@@ -654,6 +674,7 @@ $colorTretiary: #7676801f;
 </style>
 
 <script>
+import {useRoute} from 'vue-router';
 import VueTradingView from "vue-trading-view/src/vue-trading-view";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -685,12 +706,23 @@ export default {
       pSOL: 0,
       cryptos: [],
       errors: [],
+      cryptocurrency:"",
+      novcanik: 0,
+      newslink: "",
     };
   },
   created() {
+
+    const route=useRoute();
+    console.warn("route",route.params.cryptocurrency);
+    this.cryptocurrency=route.params.cryptocurrency;
+   // this.newslink = `https://cryptopanic.com/widgets/news/?bg_color=FFFFFF&amp;currencies=${this.cryptocurrency}&amp;font_family=sans&amp;font_size=20&amp;header_bg_color=FFFFFF&amp;header_text_color=FFFFFF&amp;link_color=000000&amp;news_feed=recent&amp;posts_limit=3&amp;text_color=2C3E50&amp;title=Trending%20news`;
     this.interval = setInterval(() => this.getWallet(), 1200);
     setTimeout(() => {
       this.getReminder();
+      let navigation = document.getElementById(`${this.cryptocurrency}nav`);
+    console.log(navigation);
+    navigation.classList.add("currency-active");
     }, 2000);
     setTimeout(() => {
       store.pocetnaVrijednostBTC = this.cryptos.BTC.USD;
@@ -702,6 +734,14 @@ export default {
     }, 5000);
   },
   methods: {
+  dodajimena(){
+this.cryptos.BTC.name="Bitcoin"; 
+this.cryptos.ETH.name="Etherium"; 
+this.cryptos.ADA.name="Cardano"; 
+this.cryptos.BNB.name="Binance coin"; 
+this.cryptos.SOL.name="Solana"; 
+this.cryptos.LTC.name="Litecoin"; 
+  },
     // @click.prevent="playSound('http://docs.google.com/uc?export=open&id=1r9E4Lj17lLdRPwY_d6xSsu3T9V8w66v2')"
     playSound() {
       var audio = new Audio(
@@ -710,23 +750,39 @@ export default {
       audio.play();
     },
     getWallet() {
+      this.newslink = `https://cryptopanic.com/widgets/news/?bg_color=FFFFFF&amp;currencies=${this.cryptocurrency}&amp;font_family=sans&amp;font_size=20&amp;header_bg_color=FFFFFF&amp;header_text_color=FFFFFF&amp;link_color=000000&amp;news_feed=recent&amp;posts_limit=3&amp;text_color=2C3E50&amp;title=Trending%20news`;
       var docRef = db.collection("wallet").doc(store.currentUser);
       docRef
         .get()
         .then((doc) => {
           if (doc.exists) {
-            this.BTC = doc.data().BTC;
-            this.LTC = doc.data().LTC;
-            this.ADA = doc.data().ADA;
-            this.BNB = doc.data().BNB;
-            this.SOL = doc.data().SOL;
-            this.ETH = doc.data().ETH;
+            switch(this.cryptocurrency){
+              case "BTC":
+                this.novcanik=doc.data().BTC;
+              break;
+              case "LTC":
+                this.novcanik=doc.data().LTC;
+              break;
+               case "ADA":
+                this.novcanik=doc.data().ADA;
+              break;
+              case "BNB":
+                this.novcanik=doc.data().BNB;
+              break;
+              case "SOL":
+                this.novcanik=doc.data().SOL;
+              break;
+              case "ETH":
+                this.novcanik=doc.data().ETH;
+              break;
+            }
             axios
               .get(
                 "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,ADA,BNB,SOL&tsyms=USD"
               )
               .then((response) => {
                 this.cryptos = response.data;
+                this.dodajimena();
               })
               .catch((e) => {
                 this.errors.push(e);

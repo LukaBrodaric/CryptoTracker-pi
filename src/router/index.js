@@ -9,7 +9,7 @@ const routes = [
     component: Landingpage,
   },
   {
-    path: "/Home",
+    path: "/Home/:cryptocurrency",
     name: "Home",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

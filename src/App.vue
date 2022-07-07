@@ -27,7 +27,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item" v-if="refresh == 0">
-          <router-link to="/Home">Home</router-link>
+          <router-link to="/Home/BTC">Home</router-link>
         </li>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <li class="nav-item" v-if="refresh == 0">

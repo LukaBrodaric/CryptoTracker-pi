@@ -90,7 +90,7 @@
       <!-- Lista s valutama !-->
       <ul class="currency-div">
         <li>
-          <a href="/Home">
+          <a href="/Home/BTC">
             <div class="left">
               <img src="@/assets/btc.png" />
               <div>
@@ -106,7 +106,7 @@
           </a>
         </li>
         <li>
-          <a href="/Eth">
+          <a href="/Home/ETH">
             <div class="left">
               <img src="@/assets/eth.png" />
               <div>
@@ -122,7 +122,7 @@
           </a>
         </li>
         <li>
-          <a href="/Ltc">
+          <a href="/Home/LTC">
             <div class="left">
               <img src="@/assets/ltc.png" />
               <div>
@@ -138,7 +138,7 @@
           </a>
         </li>
         <li>
-          <a href="/Ada">
+          <a href="/Home/ADA">
             <div class="left">
               <img src="@/assets/ada.png" />
               <div>
@@ -154,7 +154,7 @@
           </a>
         </li>
         <li>
-          <a href="/Bnb">
+          <a href="/Home/BNB">
             <div class="left">
               <img src="@/assets/bnb.png" />
               <div>
@@ -170,7 +170,7 @@
           </a>
         </li>
         <li>
-          <a href="/Sol">
+          <a href="/Home/SOL">
             <div class="left">
               <img src="@/assets/sol.png" />
               <div>

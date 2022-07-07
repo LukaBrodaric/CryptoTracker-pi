@@ -1,8 +1,7 @@
-DINAMIČKE RUTE
-adminpanel - za provjeru usera koji imaju upaljene notifikacije za
+DINAMIČKE RUTE - srediti news link
+adminpanel - za provjeru usera koji imaju upaljene notifikacije za -- Uključuje firebase koji sljedeće godine ne koristimo
 novosti o aplikaciji (izlista mailove na koje se šalju novosti)
-delete account i reset password option (https://firebase.google.com/docs/auth/ios/manage-users)
+delete account i reset password option (https://firebase.google.com/docs/auth/ios/manage-users) -- Odbačena idea jer ionako ćemo bez firebasea ovo trebat napravit
 dodati još kriptovaluta i blockchainova
 popraviti notifikacije
-popraviti style na landing pageu
-reminders updated pop-up
+popraviti style na landing pageu -- Moguće da je zbog previše styleova (preklapaju se)
