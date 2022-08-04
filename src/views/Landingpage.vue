@@ -15,7 +15,7 @@
 
         <div class="text-center">
           <button>
-            <span> <router-link to="/Home"> GET STARTED </router-link></span>
+            <span> <router-link to="/Home/BTC"> GET STARTED </router-link></span>
           </button>
         </div>
         <p class="footer">Fakultet Informatike u Puli</p>

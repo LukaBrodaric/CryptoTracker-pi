@@ -95,6 +95,7 @@
 <script>
 import router from "@/router";
 import store from "@/store";
+import { connectFirestoreEmulator } from "@firebase/firestore";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
@@ -131,9 +132,9 @@ export default {
           store.admin=true;
           this.administrator=1;
           }
-          //ovo mi nije radilo i ne znam dal radi
           if (!currentRoute.value.meta.needsUser) {
-            router.push({ name: "Home" });
+            console.log("ja radim");
+            router.push({ name: "Home", params: { cryptocurrency: 'BTC' }});
           }
         } else {
           // User is signed out

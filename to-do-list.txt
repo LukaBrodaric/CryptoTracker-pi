@@ -1,7 +1,15 @@
-DINAMIČKE RUTE - srediti news link
-adminpanel - za provjeru usera koji imaju upaljene notifikacije za -- Uključuje firebase koji sljedeće godine ne koristimo
+DINAMIČKE RUTE - srediti novosti kriptovaluta
 novosti o aplikaciji (izlista mailove na koje se šalju novosti)
-delete account i reset password option (https://firebase.google.com/docs/auth/ios/manage-users) -- Odbačena idea jer ionako ćemo bez firebasea ovo trebat napravit
 dodati još kriptovaluta i blockchainova
 popraviti notifikacije
 popraviti style na landing pageu -- Moguće da je zbog previše styleova (preklapaju se)
+
+
+
+delete account i reset password option -- Odbačena idea jer ionako ćemo bez firebasea ovo trebat napravit
+adminpanel - za provjeru usera koji imaju upaljene notifikacije za -- Uključuje firebase koji sljedeće godine ne koristimo
+
+
+				***NEWS***
+Staviti da se taj dio koda provodi kroz cijelu aplikaciju.
+Nakon što se reminder oglasi jednom - početna vrijednost se treba setat na trenutnu vrijednost da reminder ne pišti.

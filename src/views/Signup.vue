@@ -414,7 +414,7 @@ export default {
           () => {
             alert("Successfully logged in");
             v.xhrRequest = false;
-            v.$router.replace({ name: "Home" });
+            v.$router.replace({ name: "Home", params: { cryptocurrency: 'BTC' } });
           },
           (error) => {
             v.errorMessage = error.message.slice(10);
