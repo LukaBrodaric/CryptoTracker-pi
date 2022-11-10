@@ -709,6 +709,8 @@ export default {
       cryptocurrency:"",
       novcanik: 0,
       newslink: "",
+      cryptoNotif: "",
+      reminderPercent: "",
     };
   },
   created() {
@@ -802,6 +804,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "bitcoin"
         }
         if (
           this.cryptos.BTC.USD <
@@ -810,6 +813,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "bitcoin"
         }
       }
       if (this.pETH > 0) {
@@ -820,6 +824,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "etherium"
         }
         if (
           this.cryptos.ETH.USD <
@@ -828,6 +833,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "etherium"
         }
       }
       if (this.pADA > 0) {
@@ -838,6 +844,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "cardano"
         }
         if (
           this.cryptos.ADA.USD <
@@ -846,6 +853,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "cardano"
         }
       }
       if (this.pBNB > 0) {
@@ -856,6 +864,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "binance"
         }
         if (
           this.cryptos.BNB.USD <
@@ -864,6 +873,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "binance"
         }
       }
       if (this.pSOL > 0) {
@@ -874,6 +884,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "solana"
         }
         if (
           this.cryptos.SOL.USD <
@@ -882,6 +893,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "solana"
         }
       }
       if (this.pLTC > 0) {
@@ -892,6 +904,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "litecoin"
         }
         if (
           this.cryptos.LTC.USD <
@@ -900,6 +913,7 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.cryptoNotif = "litecoin"
         }
       }
     },
