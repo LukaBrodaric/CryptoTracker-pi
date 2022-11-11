@@ -754,6 +754,7 @@ this.cryptos.LTC.name="Litecoin";
     getWallet() {
       this.newslink = `https://cryptopanic.com/widgets/news/?bg_color=FFFFFF&amp;currencies=${this.cryptocurrency}&amp;font_family=sans&amp;font_size=20&amp;header_bg_color=FFFFFF&amp;header_text_color=FFFFFF&amp;link_color=000000&amp;news_feed=recent&amp;posts_limit=3&amp;text_color=2C3E50&amp;title=Trending%20news`;
       var docRef = db.collection("wallet").doc(store.currentUser);
+      //var docRee = db.collection("reminderi").doc(store.currentUser);
       docRef
         .get()
         .then((doc) => {
@@ -804,8 +805,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "bitcoin";
           this.reminderPercent = this.pBTC;
+          setTimeout(() => {
+          doc.data().BTC = 0; // doc.data se treba referirati na remindere, ne na wallet!!!!
+          }, 1000);
         }
         if (
           this.cryptos.BTC.USD <
@@ -814,8 +819,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "bitcoin"
           this.reminderPercent = this.pBTC;
+          setTimeout(() => {
+          doc.data().BTC = 0;
+          }, 1000);
         }
       }
       if (this.pETH > 0) {
@@ -826,8 +835,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "etherium"
           this.reminderPercent = this.pETH;
+          setTimeout(() => {
+          this.pETH = 0;
+          }, 1000);
         }
         if (
           this.cryptos.ETH.USD <
@@ -836,8 +849,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "etherium"
           this.reminderPercent = this.pETH;
+          setTimeout(() => {
+          this.pETH = 0;
+          }, 1000);
         }
       }
       if (this.pADA > 0) {
@@ -848,8 +865,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "cardano"
           this.reminderPercent = this.pADA;
+          setTimeout(() => {
+          this.pADA = 0;
+          }, 1000);
         }
         if (
           this.cryptos.ADA.USD <
@@ -858,8 +879,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "cardano"
           this.reminderPercent = this.pADA;
+          setTimeout(() => {
+          this.pADA = 0;
+          }, 1000);
         }
       }
       if (this.pBNB > 0) {
@@ -870,8 +895,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "binance"
           this.reminderPercent = this.pBNB;
+          setTimeout(() => {
+          this.pBNB = 0;
+          }, 1000);
         }
         if (
           this.cryptos.BNB.USD <
@@ -880,8 +909,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "binance"
           this.reminderPercent = this.pBNB;
+          setTimeout(() => {
+          this.pBNB = 0;
+          }, 1000);
         }
       }
       if (this.pSOL > 0) {
@@ -892,8 +925,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "solana"
           this.reminderPercent = this.pSOL;
+          setTimeout(() => {
+          this.pSOL = 0;
+          }, 1000);
         }
         if (
           this.cryptos.SOL.USD <
@@ -904,6 +941,9 @@ this.cryptos.LTC.name="Litecoin";
           this.playSound();
           this.cryptoNotif = "solana"
           this.reminderPercent = this.pSOL;
+          setTimeout(() => {
+          this.pSOL = 0;
+          }, 1000);
         }
       }
       if (this.pLTC > 0) {
@@ -914,8 +954,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "litecoin"
           this.reminderPercent = this.pLTC;
+          setTimeout(() => {
+          this.pLTC = 0;
+          }, 1000);
         }
         if (
           this.cryptos.LTC.USD <
@@ -924,8 +968,12 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
+          this.playSound();
           this.cryptoNotif = "litecoin"
           this.reminderPercent = this.pLTC;
+          setTimeout(() => {
+          this.pLTC = 0;
+          }, 1000);
         }
       }
     },
