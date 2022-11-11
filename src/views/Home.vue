@@ -20,8 +20,8 @@
             </button>
             <i class="start-icon fa fa-info-circle faa-shake animated"></i>
             <strong class="font__weight-semibold">Heads up!</strong> &nbsp; This
-            is a reminder to let you know that one or more of your reminders
-            have been triggered, please check the current crypto prices and your
+            is a reminder to let you know that the value of {{this.cryptoNotif}} has changed for {{this.reminderPercent*100}}%!
+            please check the current crypto prices and your
             portfolio.
           </div>
         </div>
@@ -804,7 +804,8 @@ this.cryptos.LTC.name="Litecoin";
         ) {
           this.alert = 1;
           this.playSound();
-          this.cryptoNotif = "bitcoin"
+          this.cryptoNotif = "bitcoin";
+          this.reminderPercent = this.pBTC;
         }
         if (
           this.cryptos.BTC.USD <
@@ -814,6 +815,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "bitcoin"
+          this.reminderPercent = this.pBTC;
         }
       }
       if (this.pETH > 0) {
@@ -825,6 +827,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "etherium"
+          this.reminderPercent = this.pETH;
         }
         if (
           this.cryptos.ETH.USD <
@@ -834,6 +837,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "etherium"
+          this.reminderPercent = this.pETH;
         }
       }
       if (this.pADA > 0) {
@@ -845,6 +849,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "cardano"
+          this.reminderPercent = this.pADA;
         }
         if (
           this.cryptos.ADA.USD <
@@ -854,6 +859,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "cardano"
+          this.reminderPercent = this.pADA;
         }
       }
       if (this.pBNB > 0) {
@@ -865,6 +871,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "binance"
+          this.reminderPercent = this.pBNB;
         }
         if (
           this.cryptos.BNB.USD <
@@ -874,6 +881,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "binance"
+          this.reminderPercent = this.pBNB;
         }
       }
       if (this.pSOL > 0) {
@@ -885,6 +893,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "solana"
+          this.reminderPercent = this.pSOL;
         }
         if (
           this.cryptos.SOL.USD <
@@ -894,6 +903,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "solana"
+          this.reminderPercent = this.pSOL;
         }
       }
       if (this.pLTC > 0) {
@@ -905,6 +915,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "litecoin"
+          this.reminderPercent = this.pLTC;
         }
         if (
           this.cryptos.LTC.USD <
@@ -914,6 +925,7 @@ this.cryptos.LTC.name="Litecoin";
           this.alert = 1;
           this.playSound();
           this.cryptoNotif = "litecoin"
+          this.reminderPercent = this.pLTC;
         }
       }
     },
